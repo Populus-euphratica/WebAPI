@@ -2,17 +2,17 @@ package com.ysu.webapi.pojo;
 
 public class User {
 //    用户id
-    int id;
+    private int id;
 //    用户姓名
-    String name;
+    private String name;
 //    用户公司
-    String company;
+    private String company;
 //    用户邮箱
-    String email;
+    private String email;
 //    用户地理位置
-    String position;
+    private String position;
 //    用户本月访问次数
-    int num;
+    private int num;
 
 
 

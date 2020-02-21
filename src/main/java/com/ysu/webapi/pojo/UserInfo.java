@@ -2,13 +2,13 @@ package com.ysu.webapi.pojo;
 
 public class UserInfo {
 //    用户详情id
-    int id;
+    private int id;
 //    对应的用户id
-    int userid;
+    private int userid;
 //    用户关注的API
-    String userConcern;
+    private String userConcern;
 //    用户上传的API
-    String userUpload;
+    private String userUpload;
 
     public int getId() {
         return id;
