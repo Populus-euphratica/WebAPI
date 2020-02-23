@@ -8,6 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
+@ServletComponentScan                   //不明白
 public class WebapiApplication {
 
     public static void main(String[] args) {

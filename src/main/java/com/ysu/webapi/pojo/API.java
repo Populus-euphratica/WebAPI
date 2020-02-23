@@ -12,7 +12,7 @@ public class API {
 //    API的类别
     private String category;
 //    API的版本
-    private String Version;
+    private String version;
 
     public int getId() {
         return id;
@@ -55,10 +55,10 @@ public class API {
     }
 
     public String getVersion() {
-        return Version;
+        return version;
     }
 
     public void setVersion(String version) {
-        Version = version;
+        this.version = version;
     }
 }

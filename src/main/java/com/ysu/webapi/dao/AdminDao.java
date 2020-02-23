@@ -1,15 +1,15 @@
-package com.ysu.webapi.mapper;
+package com.ysu.webapi.dao;
 
 import com.ysu.webapi.pojo.Admin;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 @Mapper
-public interface AdminMapper {
+public interface AdminDao {
 
 //    根据指定的管理员id查找对应的管理员
     @Select("select * from admin where id=#{admin_id}")
-    Admin selectByIdAdmin(String admin_id);
+    Admin selectByIdAdmin(int admin_id);
 //    查找所有管理员
     @Select("select * from admin")
     List<Admin> selectAllAdmin();
