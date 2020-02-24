@@ -1,16 +1,23 @@
 package com.ysu.webapi.service.impl;
 
 import com.ysu.webapi.dao.UserDao;
+import com.ysu.webapi.dao.UserInfoDao;
 import com.ysu.webapi.pojo.User;
+import com.ysu.webapi.pojo.UserInfo;
 import com.ysu.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserInfoDao userInfoDao;
+
 
     //    根据指定的user id查找对应的user
     @Override
@@ -47,14 +54,20 @@ public class UserServiceImpl implements UserService {
 
     //    添加user
     @Override
+    @Transactional
     public boolean addUser(User user){
         boolean flag=false;
         try{
+            UserInfo userInfo=new UserInfo();
+            userInfo.setUserid(user.getId());
             userDao.addUser(user);
+            userInfoDao.addUserInfo(userInfo);
             flag=true;
         }catch (Exception e){
             System.out.println("添加user失败");
             e.printStackTrace();
+//            手动回滚事务
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
         return flag;
     }
@@ -69,6 +82,24 @@ public class UserServiceImpl implements UserService {
             flag=true;
         }catch (Exception e){
             System.out.println("更新user信息失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    //    删除指定id的User   启用事务
+    @Override
+    @Transactional
+    public boolean deleteUserById(String id){
+        boolean flag=false;
+        try {
+            userDao.deleteUserById(id);
+            userInfoDao.deleteUserInfoById(id);
+            flag=true;
+        }catch (Exception e){
+            System.out.println("删除user信息失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             e.printStackTrace();
         }
         return flag;

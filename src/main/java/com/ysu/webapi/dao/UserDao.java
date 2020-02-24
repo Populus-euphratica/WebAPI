@@ -1,12 +1,10 @@
 package com.ysu.webapi.dao;
 
 import com.ysu.webapi.pojo.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
+@Mapper
 public interface UserDao {
 
     //    根据指定的user id查找对应的user
@@ -40,6 +38,10 @@ public interface UserDao {
     //    更新user信息
     @Update("update user set name=#{name},email=#{email},company=#{company} position=#{position} where id=#{id}")
     boolean updateUser(User user);
+
+    //    删除指定id的User
+    @Delete("delete from user where id=#{id}")
+    boolean deleteUserById(String id);
 
 
 

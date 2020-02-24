@@ -31,4 +31,7 @@ public interface UserService {
     //    更新user信息
     boolean updateUser(User user);
 
+    //    删除指定id的User
+    boolean deleteUserById(String id);
+
 }

@@ -1,13 +1,10 @@
 package com.ysu.webapi.dao;
 
 import com.ysu.webapi.pojo.API;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
+@Mapper
 public interface APIDao {
     //    根据指定的API id查找对应的API
     @Select("select * from api where id=#{id}")
