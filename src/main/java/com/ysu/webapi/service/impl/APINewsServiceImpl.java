@@ -6,6 +6,7 @@ import com.ysu.webapi.service.APINewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 @Service
 public class APINewsServiceImpl implements APINewsService {
@@ -21,7 +22,7 @@ public class APINewsServiceImpl implements APINewsService {
 
     //    根据指定的APINews name查找对应的APINews
     @Override
-    public APINews selectAPINewsByName(String name){
+    public List<APINews> selectAPINewsByName(String name){
         return apiNewsDao.selectAPINewsByName(name);
     }
 
@@ -34,13 +35,13 @@ public class APINewsServiceImpl implements APINewsService {
 
     //    根据指定的APINews date区间查找对应的APINews
     @Override
-    public List<APINews> selectAPINewsByDateSection(String data1, String data2){
+    public List<APINews> selectAPINewsByDateSection(Date data1, Date data2){
         return apiNewsDao.selectAPINewsByDateSection(data1,data2);
     }
 
     //    根据指定的APINews date查找对应的APINews
     @Override
-    public APINews selectAPINewsByDate(String data){
+    public List<APINews> selectAPINewsByDate(Date data){
         return apiNewsDao.selectAPINewsByDate(data);
     }
 

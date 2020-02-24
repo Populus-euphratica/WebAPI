@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     //    根据指定的user name查找对应的user
     @Override
-    public User selectUserByName(String name){
+    public List<User> selectUserByName(String name){
         return userDao.selectUserByName(name);
     }
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     //    根据company查找对应的user
     @Override
-    public User selectUserByCompany(String company){
+    public List<User> selectUserByCompany(String company){
         return userDao.selectUserByCompany(company);
     }
 

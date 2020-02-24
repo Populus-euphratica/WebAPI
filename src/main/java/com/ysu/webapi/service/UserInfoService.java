@@ -7,22 +7,22 @@ import java.util.List;
 public interface UserInfoService {
 
     //    根据指定的userInfo id查找对应的userInfo
-    UserInfo selectUserInfoById(int id);
+    public UserInfo selectUserInfoById(int id);
 
 
     //    根据指定的userInfo userId查找对应的userInfo
-    UserInfo selectUserInfoByUserId(int userid);
+    public UserInfo selectUserInfoByUserId(int userid);
 
     //    查找所有userInfo
-    List<UserInfo> selectUserInfoAll();
+    public List<UserInfo> selectUserInfoAll();
 
 
 
     //    添加userInfo
-    boolean addUserInfo(UserInfo userInfo);
+    public boolean addUserInfo(UserInfo userInfo);
 
 
     //    更新userInfo信息
-    boolean updateUserInfo(UserInfo userInfo);
+    public boolean updateUserInfo(UserInfo userInfo);
 
 }

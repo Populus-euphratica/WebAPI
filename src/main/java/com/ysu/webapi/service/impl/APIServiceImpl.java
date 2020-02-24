@@ -20,7 +20,7 @@ public class APIServiceImpl implements APIService {
 
     //    根据指定的API name查找对应的API
     @Override
-    public API selectAPIByName(String name){
+    public List<API> selectAPIByName(String name){
         return apiDao.selectAPIByName(name);
     }
 

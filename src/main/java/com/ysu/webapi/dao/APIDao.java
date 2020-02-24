@@ -11,7 +11,7 @@ public interface APIDao {
     API selectAPIById(int id);
     //    根据指定的API name查找对应的API
     @Select("select * from api where name=%#{name}%")
-    API selectAPIByName(String name);
+    List<API> selectAPIByName(String name);
     //    根据指定的API category查找对应的API
     @Select("select * from api where category=%#{category}%")
     API selectAPIByCategory(String category);

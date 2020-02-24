@@ -51,7 +51,7 @@ public class AdminServiceImpl implements AdminService {
 
     // 按照ID查找管理员
     @Override
-    public Admin selectByIdAdmin(String admin_id){
+    public Admin selectByIdAdmin(int admin_id){
         return adminDao.selectByIdAdmin(admin_id);
     }
 

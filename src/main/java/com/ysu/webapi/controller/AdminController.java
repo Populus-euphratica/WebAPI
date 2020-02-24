@@ -40,12 +40,12 @@ public class AdminController {
         return adminService.selectAllAdmin();
     }
 
-    @ApiOperation(value="按照管理员ID查找管理员", notes="输入管理员ID admin_id，查询管理员，返回单个Admin对象")
-    @ApiImplicitParam(name = "admin_id", value = "管理员Id", required = true, paramType = "query", dataType = "String")
+    @ApiOperation(value="按照管理员ID查找管理员", notes="输入管理员ID ，查询管理员，返回单个Admin对象")
+    @ApiImplicitParam(name = "id", value = "管理员Id", required = true, paramType = "query", dataType = "int")
     @GetMapping("/id")
-    public Admin selectByIdAdmin(@RequestParam String admin_id){
+    public Admin selectByIdAdmin(@RequestParam int id){
         System.out.println("开始查找指定管理员！");
-        return adminService.selectByIdAdmin(admin_id);
+        return adminService.selectByIdAdmin(id);
     }
 
     @ApiOperation(value="验证登陆", notes="输入管理员账号，查询管理员，返回单个Admin对象")

@@ -7,25 +7,25 @@ import java.util.List;
 public interface APIService {
 
     //    根据指定的API id查找对应的API
-    API selectAPIById(int id);
+    public API selectAPIById(int id);
 
     //    根据指定的API name查找对应的API
-    API selectAPIByName(String Name);
+    public List<API> selectAPIByName(String name);
 
     //    根据指定的API category查找对应的API
-    API selectAPIByCategory(String category);
+    public API selectAPIByCategory(String category);
 
     //    查找所有api
-    List<API> selectAllAPI();
+    public List<API> selectAllAPI();
 
     //     添加api
-    boolean addAPI(API api);
+    public boolean addAPI(API api);
 
     //    更新指定id的API
-    boolean updateAPI(API api);
+    public boolean updateAPI(API api);
 
     //    删除指定id的API
-    boolean deleteAPIById(String id);
+    public boolean deleteAPIById(String id);
 
 
 }

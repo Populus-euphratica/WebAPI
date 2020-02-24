@@ -14,7 +14,7 @@ public interface UserDao {
 
     //    根据指定的user name查找对应的user
     @Select("select * from user where name=#{name}")
-    User selectUserByName(String name);
+    List<User> selectUserByName(String name);
 
     //    查找所有user
     @Select("select * from user")
@@ -28,7 +28,7 @@ public interface UserDao {
 
     //    根据company查找对应的user
     @Select("select * from user where company=#{company}")
-    User selectUserByCompany(String company);
+    List<User> selectUserByCompany(String company);
 
     //    添加user
     @Insert("insert into user (name,email,company,position) values(#{name},#{email},#{company},#{position})")

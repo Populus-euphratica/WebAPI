@@ -1,6 +1,7 @@
 package com.ysu.webapi.pojo;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class APINews {
 //    新闻id
