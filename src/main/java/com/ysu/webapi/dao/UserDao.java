@@ -31,12 +31,12 @@ public interface UserDao {
     List<User> selectUserByCompany(String company);
 
     //    添加user
-    @Insert("insert into user (name,email,company,position) values(#{name},#{email},#{company},#{position})")
+    @Insert("insert into user (name,company,email,password,position) values(#{name},#{company},#{email},#{password},#{position})")
     boolean addUser(User user);
 
 
     //    更新user信息
-    @Update("update user set name=#{name},email=#{email},company=#{company} position=#{position} where id=#{id}")
+    @Update("update user set name=#{name},company=#{company},email=#{email},password=#{password},position=#{position} where id=#{id}")
     boolean updateUser(User user);
 
     //    删除指定id的User

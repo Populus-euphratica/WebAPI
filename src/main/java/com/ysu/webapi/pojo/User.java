@@ -9,6 +9,8 @@ public class User {
     private String company;
 //    用户邮箱
     private String email;
+//    用户密码
+    private String password;
 //    用户地理位置
     private String position;
 //    用户本月访问次数
@@ -62,5 +64,13 @@ public class User {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

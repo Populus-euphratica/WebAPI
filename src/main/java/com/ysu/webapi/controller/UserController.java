@@ -89,4 +89,17 @@ public class UserController {
         return userService.deleteUserById(id);
     }
 
+    @ApiOperation(value="验证登陆", notes="输入用户账号，查询用户，返回是否存在")
+    @ApiImplicitParam(name = "user", value = "用户类详细实体user", required = true, dataType = "User")
+    @PostMapping("/login")
+    public boolean loginAdmin(@RequestBody User user){
+        System.out.println("开始匹配指定管理员账号密码是否正确！");
+        User user1=userService.selectUserByEmail(user.getEmail());
+        if (user.getPassword().equals(user1.getPassword())){
+            System.out.println("user账号正确");
+            return true;
+        }
+        return false;
+    }
+
 }
