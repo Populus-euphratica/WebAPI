@@ -1,5 +1,7 @@
 package com.ysu.webapi.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.dao.APIDao;
 import com.ysu.webapi.pojo.API;
 import com.ysu.webapi.service.APIService;
@@ -32,8 +34,11 @@ public class APIServiceImpl implements APIService {
 
     //    查找所有api
     @Override
-    public List<API> selectAllAPI(){
-        return apiDao.selectAllAPI();
+    public PageInfo<API> selectAllAPI(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<API> list=apiDao.selectAllAPI();
+        PageInfo page=new PageInfo(list,5);
+        return page;
     }
 
     //     添加api
@@ -47,7 +52,7 @@ public class APIServiceImpl implements APIService {
             System.out.println("添加api失败");
             e.printStackTrace();
         }
-        return false;
+        return flag;
     }
 
     //    更新指定id的API

@@ -6,13 +6,13 @@ public class API {
 //    API名称
     private String name;
 //    API的简略介绍
-    private String descriptionBiref;
+    private String descriptionBrief;
 //    API的详细介绍
     private String description;
 //    API的类别
     private String category;
 //    API的版本
-    private String version;
+    private String versions;
 
     public int getId() {
         return id;
@@ -30,13 +30,6 @@ public class API {
         this.name = name;
     }
 
-    public String getDescriptionBiref() {
-        return descriptionBiref;
-    }
-
-    public void setDescriptionBiref(String descriptionBiref) {
-        this.descriptionBiref = descriptionBiref;
-    }
 
     public String getDescription() {
         return description;
@@ -54,11 +47,19 @@ public class API {
         this.category = category;
     }
 
-    public String getVersion() {
-        return version;
+    public String getDescriptionBrief() {
+        return descriptionBrief;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setDescriptionBrief(String descriptionBrief) {
+        this.descriptionBrief = descriptionBrief;
+    }
+
+    public String getVersions() {
+        return versions;
+    }
+
+    public void setVersions(String versions) {
+        this.versions = versions;
     }
 }

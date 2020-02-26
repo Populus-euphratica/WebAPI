@@ -1,5 +1,6 @@
 package com.ysu.webapi.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
 import com.ysu.webapi.service.APIService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -43,10 +44,11 @@ public class APIController {
 
     //    查找所有API
     @ApiOperation(value="查找所有API", notes="查找所有API")
+    @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     @GetMapping("/")
-    public List<API> selectAllAPI(){
+    public PageInfo<API> selectAllAPI(@RequestParam int pageNum){
         System.out.println("开始查找所有API！");
-        return apiService.selectAllAPI();
+        return apiService.selectAllAPI(pageNum,10);
     }
 
     //     添加api

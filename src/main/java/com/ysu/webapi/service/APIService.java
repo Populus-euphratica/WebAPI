@@ -1,5 +1,6 @@
 package com.ysu.webapi.service;
 
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface APIService {
     public API selectAPIByCategory(String category);
 
     //    查找所有api
-    public List<API> selectAllAPI();
+    public PageInfo<API> selectAllAPI(int pageNum, int pageSize);
 
     //     添加api
     public boolean addAPI(API api);
