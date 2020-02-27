@@ -1,5 +1,6 @@
 package com.ysu.webapi.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.APINews;
 import com.ysu.webapi.service.APINewsService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
+
+import static com.ysu.webapi.WebapiApplication.pageSize;
+
 @RestController
 @RequestMapping(value = "/api/apiNews")
 public class APINewsController  {
@@ -27,50 +31,61 @@ public class APINewsController  {
 
     //    根据指定的APINews name查找对应的APINews
     @ApiOperation(value="通过name查找APINews", notes="输入APINews name，查询APINews，返回单个APINews对象")
-    @ApiImplicitParam(name = "name", value = "APINews类name", required = true, dataType = "String")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "APINews类name", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
     @GetMapping("/name")
-    public List<APINews> selectAPINewsByName(@RequestParam String name){
+    public PageInfo<APINews> selectAPINewsByName(@RequestParam String name,@RequestParam int pageNum){
         System.out.println("开始根据指定的APINews name查找对应的APINews!");
-        return apiNewsService.selectAPINewsByName(name);
+        return apiNewsService.selectAPINewsByName(name,pageNum,pageSize);
     }
 
 
     //    根据指定的APINews author查找对应的APINews
     @ApiOperation(value="通过author查找APINews", notes="输入APINews author，查询APINews，返回单个APINews对象")
-    @ApiImplicitParam(name = "author", value = "APINews类author", required = true, dataType = "String")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "author", value = "APINews类author", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
     @GetMapping("/author")
-    public APINews selectAPINewsByAuthor(@RequestParam String author){
+    public PageInfo<APINews> selectAPINewsByAuthor(@RequestParam String author,@RequestParam int pageNum){
         System.out.println("开始根据指定的APINews author查找对应的APINews!");
-        return apiNewsService.selectAPINewsByAuthor(author);
+        return apiNewsService.selectAPINewsByAuthor(author,pageNum,pageSize);
     }
 
     //    根据指定的APINews date区间查找对应的APINews
     @ApiOperation(value="通过date区间查找APINews", notes="输入APINews date区间data1,data2，查询APINews，返回所有符合的APINews对象")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "data1", value = "查询开始日期", required = true, dataType = "Date"),
-            @ApiImplicitParam(name = "data2", value = "查询结束日期", required = true, dataType = "Date")
+            @ApiImplicitParam(name = "data2", value = "查询结束日期", required = true, dataType = "Date"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/dateSection")
-    public List<APINews> selectAPINewsByDateSection(@RequestParam Date data1, @RequestParam Date data2){
+    public PageInfo<APINews> selectAPINewsByDateSection(@RequestParam Date data1, @RequestParam Date data2,@RequestParam int pageNum){
         System.out.println("开始根据指定的APINews date区间查找对应的APINews!");
-        return selectAPINewsByDateSection(data1,data2);
+        return apiNewsService.selectAPINewsByDateSection(data1,data2,pageNum,pageSize);
     }
 
     //    根据指定的APINews date查找对应的APINews
     @ApiOperation(value="通过date查找APINews", notes="输入APINews data，查询APINews，返回所有符合的APINews对象")
-    @ApiImplicitParam(name = "data", value = "APINews类data", required = true, dataType = "Date")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "data", value = "APINews类data", required = true, dataType = "Date"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
     @GetMapping("/data")
-    public List<APINews> selectAPINewsByDate(@RequestParam Date data){
+    public PageInfo<APINews> selectAPINewsByDate(@RequestParam Date data,  @RequestParam int pageNum){
         System.out.println("开始根据指定的APINews date查找对应的APINews!");
-        return selectAPINewsByDate(data);
+        return apiNewsService.selectAPINewsByDate(data,pageNum,pageSize);
     }
 
     //    查找所有APINews
     @ApiOperation(value="查找所有APINews", notes="查找所有APINews")
+    @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     @GetMapping("/")
-    public List<APINews> selectAllAPINews(){
+    public PageInfo<APINews> selectAllAPINews(@RequestParam int pageNum){
         System.out.println("开始查找所有APINews!");
-        return selectAllAPINews();
+        return apiNewsService.selectAllAPINews(pageNum,pageSize);
     }
 
 

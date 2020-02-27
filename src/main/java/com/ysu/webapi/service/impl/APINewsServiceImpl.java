@@ -1,5 +1,7 @@
 package com.ysu.webapi.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.dao.APINewsDao;
 import com.ysu.webapi.pojo.APINews;
 import com.ysu.webapi.service.APINewsService;
@@ -22,33 +24,48 @@ public class APINewsServiceImpl implements APINewsService {
 
     //    根据指定的APINews name查找对应的APINews
     @Override
-    public List<APINews> selectAPINewsByName(String name){
-        return apiNewsDao.selectAPINewsByName(name);
+    public PageInfo<APINews> selectAPINewsByName(String name,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByName(name);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
     }
 
 
     //    根据指定的APINews author查找对应的APINews
     @Override
-    public APINews selectAPINewsByAuthor(String author){
-        return apiNewsDao.selectAPINewsByAuthor(author);
+    public PageInfo<APINews> selectAPINewsByAuthor(String author,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByAuthor(author);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
     }
 
     //    根据指定的APINews date区间查找对应的APINews
     @Override
-    public List<APINews> selectAPINewsByDateSection(Date data1, Date data2){
-        return apiNewsDao.selectAPINewsByDateSection(data1,data2);
+    public PageInfo<APINews> selectAPINewsByDateSection(Date data1, Date data2,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByDateSection(data1,data2);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
     }
 
     //    根据指定的APINews date查找对应的APINews
     @Override
-    public List<APINews> selectAPINewsByDate(Date data){
-        return apiNewsDao.selectAPINewsByDate(data);
+    public PageInfo<APINews> selectAPINewsByDate(Date data,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByDate(data);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
     }
 
     //    查找所有APINews
     @Override
-    public List<APINews> selectAllAPINews(){
-        return apiNewsDao.selectAllAPINews();
+    public PageInfo<APINews> selectAllAPINews(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAllAPINews();
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
     }
 
 

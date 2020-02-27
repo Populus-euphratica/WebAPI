@@ -11,10 +11,10 @@ public interface APIService {
     public API selectAPIById(int id);
 
     //    根据指定的API name查找对应的API
-    public List<API> selectAPIByName(String name);
+    public PageInfo<API> selectAPIByName(String name,int pageNum,int pageSize);
 
     //    根据指定的API category查找对应的API
-    public API selectAPIByCategory(String category);
+    public PageInfo<API> selectAPIByCategory(String category,int pageNum,int pageSize);
 
     //    查找所有api
     public PageInfo<API> selectAllAPI(int pageNum, int pageSize);

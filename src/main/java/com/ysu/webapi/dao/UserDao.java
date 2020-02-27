@@ -13,7 +13,7 @@ public interface UserDao {
 
 
     //    根据指定的user name查找对应的user
-    @Select("select * from user where name=#{name}")
+    @Select("select * from user where name like CONCAT('%',#{category},'%')")
     List<User> selectUserByName(String name);
 
     //    查找所有user
@@ -27,7 +27,7 @@ public interface UserDao {
 
 
     //    根据company查找对应的user
-    @Select("select * from user where company=#{company}")
+    @Select("select * from user where company like CONCAT('%',#{company},'%')")
     List<User> selectUserByCompany(String company);
 
     //    添加user

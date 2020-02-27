@@ -10,11 +10,11 @@ public interface APIDao {
     @Select("select * from api where id=#{id}")
     API selectAPIById(int id);
     //    根据指定的API name查找对应的API
-    @Select("select * from api where name=%#{name}%")
+    @Select("select * from api where name like CONCAT('%',#{name},'%')")
     List<API> selectAPIByName(String name);
     //    根据指定的API category查找对应的API
-    @Select("select * from api where category=%#{category}%")
-    API selectAPIByCategory(String category);
+    @Select("select * from api where category like CONCAT('%',#{category},'%')")
+    List<API> selectAPIByCategory(String category);
     //    查找所有api
     @Select("select name,descriptionBrief,category,versions from api")
     List<API> selectAllAPI();

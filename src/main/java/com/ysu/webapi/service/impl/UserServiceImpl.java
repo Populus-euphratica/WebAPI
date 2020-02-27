@@ -1,5 +1,7 @@
 package com.ysu.webapi.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.dao.UserDao;
 import com.ysu.webapi.dao.UserInfoDao;
 import com.ysu.webapi.pojo.User;
@@ -28,14 +30,20 @@ public class UserServiceImpl implements UserService {
 
     //    根据指定的user name查找对应的user
     @Override
-    public List<User> selectUserByName(String name){
-        return userDao.selectUserByName(name);
+    public PageInfo<User> selectUserByName(String name,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.selectUserByName(name);
+        PageInfo<User> page=new PageInfo(list,5);
+        return page;
     }
 
     //    查找所有user
     @Override
-    public List<User> selectUserAll(){
-        return userDao.selectUserAll();
+    public PageInfo<User> selectUserAll(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.selectUserAll();
+        PageInfo<User> page=new PageInfo(list,5);
+        return page;
     }
 
 
@@ -48,8 +56,11 @@ public class UserServiceImpl implements UserService {
 
     //    根据company查找对应的user
     @Override
-    public List<User> selectUserByCompany(String company){
-        return userDao.selectUserByCompany(company);
+    public PageInfo<User> selectUserByCompany(String company,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.selectUserByCompany(company);
+        PageInfo<User> page=new PageInfo(list,5);
+        return page;
     }
 
     //    添加user

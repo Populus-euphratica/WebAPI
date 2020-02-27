@@ -22,14 +22,20 @@ public class APIServiceImpl implements APIService {
 
     //    根据指定的API name查找对应的API
     @Override
-    public List<API> selectAPIByName(String name){
-        return apiDao.selectAPIByName(name);
+    public PageInfo<API> selectAPIByName(String name,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<API> list=apiDao.selectAPIByName(name);
+        PageInfo<API> page=new PageInfo(list,5);
+        return page;
     }
 
     //    根据指定的API category查找对应的API
     @Override
-    public API selectAPIByCategory(String category){
-        return apiDao.selectAPIByCategory(category);
+    public PageInfo<API> selectAPIByCategory(String category,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<API> list=apiDao.selectAPIByCategory(category);
+        PageInfo<API> page=new PageInfo(list,5);
+        return page;
     }
 
     //    查找所有api
@@ -37,7 +43,7 @@ public class APIServiceImpl implements APIService {
     public PageInfo<API> selectAllAPI(int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<API> list=apiDao.selectAllAPI();
-        PageInfo page=new PageInfo(list,5);
+        PageInfo<API> page=new PageInfo(list,5);
         return page;
     }
 

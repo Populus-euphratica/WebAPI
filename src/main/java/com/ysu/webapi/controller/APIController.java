@@ -4,11 +4,14 @@ import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
 import com.ysu.webapi.service.APIService;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import static com.ysu.webapi.WebapiApplication.pageSize;
+
+
 @RestController
 @RequestMapping(value = "/api/api")
 public class APIController {
@@ -26,20 +29,26 @@ public class APIController {
 
     //    根据指定的API name查找对应的API
     @ApiOperation(value="查找API", notes="根据指定的API name查找对应的API，返回API")
-    @ApiImplicitParam(name = "name", value = "API类属性name", required = true, dataType = "String")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "API类属性name", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
     @GetMapping("/name")
-    public List<API> selectAPIByName(@RequestParam String name){
+    public PageInfo<API> selectAPIByName(@RequestParam String name,@RequestParam int pageNum){
         System.out.println("开始根据指定的API name查找对应的API！");
-        return apiService.selectAPIByName(name);
+        return apiService.selectAPIByName(name,pageNum,pageSize);
     }
 
     //    根据指定的API category查找对应的API
     @ApiOperation(value="查找API", notes="根据指定的API category查找对应的API，返回API")
-    @ApiImplicitParam(name = "category", value = "API类属性category", required = true, dataType = "String")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "category", value = "API类属性category", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
     @GetMapping("/category")
-    public API selectAPIByCategory(@RequestParam String category){
+    public PageInfo<API> selectAPIByCategory(@RequestParam String category,@RequestParam int pageNum){
         System.out.println("开始根据指定的API category查找对应的API！");
-        return apiService.selectAPIByCategory(category);
+        return apiService.selectAPIByCategory(category,pageNum,pageSize);
     }
 
     //    查找所有API
@@ -48,7 +57,7 @@ public class APIController {
     @GetMapping("/")
     public PageInfo<API> selectAllAPI(@RequestParam int pageNum){
         System.out.println("开始查找所有API！");
-        return apiService.selectAllAPI(pageNum,10);
+        return apiService.selectAllAPI(pageNum,pageSize);
     }
 
     //     添加api

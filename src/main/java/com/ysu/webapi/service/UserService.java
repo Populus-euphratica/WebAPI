@@ -1,5 +1,6 @@
 package com.ysu.webapi.service;
 
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.User;
 
 import java.util.List;
@@ -11,10 +12,10 @@ public interface UserService {
 
 
     //    根据指定的user name查找对应的user
-    public List<User> selectUserByName(String name);
+    public PageInfo<User> selectUserByName(String name,int pageNum,int pageSize);
 
     //    查找所有user
-    public List<User> selectUserAll();
+    public PageInfo<User> selectUserAll(int pageNum,int pageSize);
 
 
     //    根据邮箱查找对应的user
@@ -22,7 +23,7 @@ public interface UserService {
 
 
     //    根据company查找对应的user
-    public List<User> selectUserByCompany(String company);
+    public PageInfo<User> selectUserByCompany(String company,int pageNum,int pageSize);
 
     //    添加user
     public boolean addUser(User user);

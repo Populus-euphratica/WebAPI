@@ -1,5 +1,6 @@
 package com.ysu.webapi.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.User;
 import com.ysu.webapi.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.ysu.webapi.WebapiApplication.pageSize;
+
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
@@ -28,17 +32,17 @@ public class UserController {
     @ApiOperation(value="通过name查找User", notes="输入User name，查询User，返回单个User对象")
     @ApiImplicitParam(name = "name", value = "User类name", required = true, dataType = "String")
     @GetMapping("/name")
-    public List<User> selectUserByName(@RequestParam String name){
+    public PageInfo<User> selectUserByName(@RequestParam String name,@RequestParam int pageNum){
         System.out.println("开始根据指定的user name查找对应的user！");
-        return userService.selectUserByName(name);
+        return userService.selectUserByName(name,pageNum,pageSize);
     }
 
     //    查找所有User
     @ApiOperation(value="查找所有User", notes="查找所有User")
     @GetMapping("/")
-    public List<User> selectUserAll(){
+    public PageInfo<User> selectUserAll(@RequestParam int pageNum){
         System.out.println("开始查找所有User！");
-        return userService.selectUserAll();
+        return userService.selectUserAll(pageNum,pageSize);
     }
 
 
@@ -56,9 +60,9 @@ public class UserController {
     @ApiOperation(value="通过company查找User", notes="输入User company，查询User，返回单个User对象")
     @ApiImplicitParam(name = "company", value = "User类company", required = true, dataType = "String")
     @GetMapping("/company")
-    public List<User> selectUserByCompany(@RequestParam String company){
+    public PageInfo<User> selectUserByCompany(@RequestParam String company,@RequestParam int pageNum){
         System.out.println("开始根据company查找对应的user！");
-        return userService.selectUserByCompany(company);
+        return userService.selectUserByCompany(company,pageNum,pageSize);
     }
 
     //    添加user

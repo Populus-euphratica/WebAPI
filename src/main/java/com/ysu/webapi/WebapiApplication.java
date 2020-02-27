@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ServletComponentScan                   //不明白
 @EnableTransactionManagement
 public class WebapiApplication {
-
+    public static final int pageSize=10;
     public static void main(String[] args) {
         SpringApplication.run(WebapiApplication.class, args);
     }
