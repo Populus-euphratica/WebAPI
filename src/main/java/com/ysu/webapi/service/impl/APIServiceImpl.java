@@ -38,6 +38,16 @@ public class APIServiceImpl implements APIService {
         return page;
     }
 
+    // 全部匹配
+    @Override
+    public PageInfo<API> selectAPIByAll(String val,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<API> list=apiDao.selectAPIByAll(val);
+        PageInfo<API> page=new PageInfo(list,5);
+        return page;
+    }
+
+
     //    查找所有api
     @Override
     public PageInfo<API> selectAllAPI(int pageNum,int pageSize){

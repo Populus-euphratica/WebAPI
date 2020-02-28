@@ -15,6 +15,11 @@ public interface APIDao {
     //    根据指定的API category查找对应的API
     @Select("select * from api where category like CONCAT('%',#{category},'%')")
     List<API> selectAPIByCategory(String category);
+
+    // 全部匹配
+    @Select("select * from api where category like CONCAT('%',#{category},'%') or name like CONCAT('%',#{name},'%')")
+    List<API> selectAPIByAll(String val);
+
     //    查找所有api
     @Select("select name,descriptionBrief,category,versions from api")
     List<API> selectAllAPI();

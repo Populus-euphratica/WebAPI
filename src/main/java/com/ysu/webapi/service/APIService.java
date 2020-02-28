@@ -16,6 +16,9 @@ public interface APIService {
     //    根据指定的API category查找对应的API
     public PageInfo<API> selectAPIByCategory(String category,int pageNum,int pageSize);
 
+    // 全部匹配
+    public PageInfo<API> selectAPIByAll(String val,int pageNum,int pageSize);
+
     //    查找所有api
     public PageInfo<API> selectAllAPI(int pageNum, int pageSize);
 

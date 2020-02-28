@@ -51,6 +51,24 @@ public class APIController {
         return apiService.selectAPIByCategory(category,pageNum,pageSize);
     }
 
+
+
+    // 全部匹配
+    @ApiOperation(value="全部匹配查找API", notes="根据指定的val启用全部匹配从name和category中模糊匹配查找对应的API，返回符合的API")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "val", value = "查询值", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
+    @GetMapping("/all")
+    public PageInfo<API> selectAPIByAll(String val,int pageNum){
+        System.out.println("开始根据指定的val启用全部匹配从name和category中模糊匹配查找对应的API！");
+        return apiService.selectAPIByAll(val,pageNum,pageSize);
+    }
+
+
+
+
+
     //    查找所有API
     @ApiOperation(value="查找所有API", notes="查找所有API")
     @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
