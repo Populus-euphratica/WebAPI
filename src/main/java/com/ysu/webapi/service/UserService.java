@@ -25,6 +25,9 @@ public interface UserService {
     //    根据company查找对应的user
     public PageInfo<User> selectUserByCompany(String company,int pageNum,int pageSize);
 
+    //    模糊查找
+    public PageInfo<User> selectUserByAll(String val,int pageNum,int pageSize);
+
     //    添加user
     public boolean addUser(User user);
 

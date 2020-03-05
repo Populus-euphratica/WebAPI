@@ -31,8 +31,12 @@ public interface UserInfoDao {
     @Update("update userinfo set userid=#{userid},userConcern=#{userConcern},userUpload=#{userUpload} where id=#{id}")
     boolean updateUserInfo(UserInfo userInfo);
 
-    //    删除指定id的User
+    //    删除指定id的userInfo
     @Delete("delete from userinfo where id=#{id}")
     boolean deleteUserInfoById(String id);
+
+    //    删除指定id的userInfo
+    @Delete("delete from userinfo where userid=#{userid}")
+    boolean deleteUserInfoByUserId(String id);
 
 }

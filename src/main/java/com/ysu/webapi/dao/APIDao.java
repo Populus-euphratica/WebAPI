@@ -17,11 +17,11 @@ public interface APIDao {
     List<API> selectAPIByCategory(String category);
 
     // 全部匹配
-    @Select("select * from api where category like CONCAT('%',#{category},'%') or name like CONCAT('%',#{name},'%')")
+    @Select("select * from api where category like CONCAT('%',#{val},'%') or name like CONCAT('%',#{val},'%')")
     List<API> selectAPIByAll(String val);
 
     //    查找所有api
-    @Select("select name,descriptionBrief,category,versions from api")
+    @Select("select * from api")
     List<API> selectAllAPI();
     //     添加api
     @Insert("insert into api (name,descriptionBrief,description,category,versions) values(#{name},#{descriptionBrief},#{description},#{category},#{versions})")

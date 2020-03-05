@@ -63,6 +63,15 @@ public class UserServiceImpl implements UserService {
         return page;
     }
 
+    //    模糊查找
+    @Override
+    public PageInfo<User> selectUserByAll(String val,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.selectUserByAll(val);
+        PageInfo<User> page=new PageInfo<User>(list,5);
+        return page;
+    }
+
     //    添加user
     @Override
     @Transactional
@@ -70,8 +79,8 @@ public class UserServiceImpl implements UserService {
         boolean flag=false;
         try{
             UserInfo userInfo=new UserInfo();
-            userInfo.setUserid(user.getId());
             userDao.addUser(user);
+            userInfo.setUserid(userDao.selectUserByEmail(user.getEmail()).getId());
             userInfoDao.addUserInfo(userInfo);
             flag=true;
         }catch (Exception e){
@@ -106,7 +115,7 @@ public class UserServiceImpl implements UserService {
         boolean flag=false;
         try {
             userDao.deleteUserById(id);
-            userInfoDao.deleteUserInfoById(id);
+            userInfoDao.deleteUserInfoByUserId(id);
             flag=true;
         }catch (Exception e){
             System.out.println("删除user信息失败");

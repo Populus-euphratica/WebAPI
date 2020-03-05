@@ -60,7 +60,7 @@ public class APIController {
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/all")
-    public PageInfo<API> selectAPIByAll(String val,int pageNum){
+    public PageInfo<API> selectAPIByAll(@RequestParam String val, @RequestParam int pageNum){
         System.out.println("开始根据指定的val启用全部匹配从name和category中模糊匹配查找对应的API！");
         return apiService.selectAPIByAll(val,pageNum,pageSize);
     }
