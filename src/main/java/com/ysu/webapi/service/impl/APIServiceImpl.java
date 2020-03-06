@@ -3,16 +3,21 @@ package com.ysu.webapi.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.dao.APIDao;
+import com.ysu.webapi.dao.APIInfoDao;
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APIInfo;
 import com.ysu.webapi.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
 public class APIServiceImpl implements APIService {
     @Autowired
     private APIDao apiDao;
+    @Autowired
+    private APIInfoDao apiInfoDao;
 
     //    根据指定的API id查找对应的API
     @Override
@@ -59,11 +64,14 @@ public class APIServiceImpl implements APIService {
 
     //     添加api
     @Override
+    @Transactional
     public boolean addAPI(API api){
         boolean flag=false;
         try {
             apiDao.addAPI(api);
-            flag=true;
+            APIInfo apiInfo=new APIInfo();
+            apiInfo.setId(api.getId());
+            flag=apiInfoDao.addAPIInfo(apiInfo);
         }catch (Exception e){
             System.out.println("添加api失败");
             e.printStackTrace();
@@ -76,8 +84,7 @@ public class APIServiceImpl implements APIService {
     public boolean updateAPI(API api){
         boolean flag=false;
         try {
-            apiDao.updateAPI(api);
-            flag=true;
+            flag=apiDao.updateAPI(api);
         }catch (Exception e){
             System.out.println("更新api失败");
             e.printStackTrace();
@@ -87,11 +94,12 @@ public class APIServiceImpl implements APIService {
 
     //    删除指定id的API
     @Override
-    public boolean deleteAPIById(String id){
+    @Transactional
+    public boolean deleteAPIById(int id){
         boolean flag=false;
         try {
             apiDao.deleteAPIById(id);
-            flag=true;
+            flag=apiInfoDao.deleteAPIInfoById(id);
         }catch (Exception e){
             System.out.println("删除API失败");
             e.printStackTrace();

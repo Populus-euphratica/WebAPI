@@ -25,5 +25,5 @@ public interface ApplyForAdminService {
 
 
     //    删除指定id的管理员申请
-    public boolean deleteApplyById(String id);
+    public boolean deleteApplyById(int id);
 }

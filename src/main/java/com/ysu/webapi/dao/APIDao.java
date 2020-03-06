@@ -31,6 +31,6 @@ public interface APIDao {
     boolean updateAPI(API api);
     //    删除指定id的API
     @Delete("delete from api where id=#{id}")
-    boolean deleteAPIById(String id);
+    boolean deleteAPIById(int id);
 
 }

@@ -29,7 +29,7 @@ public interface APIService {
     public boolean updateAPI(API api);
 
     //    删除指定id的API
-    public boolean deleteAPIById(String id);
+    public boolean deleteAPIById(int id);
 
 
 }

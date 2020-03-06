@@ -74,8 +74,7 @@ public class APINewsServiceImpl implements APINewsService {
     public boolean addAPINews(APINews api){
         boolean flag=false;
         try {
-            apiNewsDao.addAPINews(api);
-            flag=true;
+            flag=apiNewsDao.addAPINews(api);
         }catch (Exception e){
             System.out.println("添加APINews失败");
             e.printStackTrace();
@@ -89,8 +88,7 @@ public class APINewsServiceImpl implements APINewsService {
     public boolean updateAPINews(APINews api){
         boolean flag=false;
         try {
-            apiNewsDao.updateAPINews(api);
-            flag=true;
+            flag=apiNewsDao.updateAPINews(api);
         }catch (Exception e){
             System.out.println("更新APINews失败");
             e.printStackTrace();
@@ -101,11 +99,10 @@ public class APINewsServiceImpl implements APINewsService {
 
     //    删除指定id的APINews
     @Override
-    public boolean deleteAPINewsById(String id){
+    public boolean deleteAPINewsById(int id){
         boolean flag=false;
         try {
-            apiNewsDao.deleteAPINewsById(id);
-            flag=true;
+            flag=apiNewsDao.deleteAPINewsById(id);
         }catch (Exception e){
             System.out.println("删除APINews失败");
             e.printStackTrace();

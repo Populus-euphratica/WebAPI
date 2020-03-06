@@ -13,8 +13,8 @@ public interface UserInfoDao {
 
 
     //    根据指定的userInfo userId查找对应的userInfo
-    @Select("select * from userinfo where userid=#{userid}")
-    UserInfo selectUserInfoByUserId(int userid);
+    @Select("select * from userinfo where userId=#{userId}")
+    UserInfo selectUserInfoByUserId(int userId);
 
     //    查找所有userInfo
     @Select("select * from userinfo")
@@ -23,20 +23,20 @@ public interface UserInfoDao {
 
 
     //    添加userInfo
-    @Insert("insert into userinfo (userid,userConcern,userUpload) values(#{userid},#{userConcern},#{userUpload})")
+    @Insert("insert into userinfo (userId,userConcern,userUpload) values(#{userId},#{userConcern},#{userUpload})")
     boolean addUserInfo(UserInfo userInfo);
 
 
     //    更新userInfo信息
-    @Update("update userinfo set userid=#{userid},userConcern=#{userConcern},userUpload=#{userUpload} where id=#{id}")
+    @Update("update userinfo set userId=#{userId},userConcern=#{userConcern},userUpload=#{userUpload} where id=#{id}")
     boolean updateUserInfo(UserInfo userInfo);
 
     //    删除指定id的userInfo
     @Delete("delete from userinfo where id=#{id}")
-    boolean deleteUserInfoById(String id);
+    boolean deleteUserInfoById(int id);
 
     //    删除指定id的userInfo
-    @Delete("delete from userinfo where userid=#{userid}")
-    boolean deleteUserInfoByUserId(String id);
+    @Delete("delete from userinfo where userId=#{userId}")
+    boolean deleteUserInfoByUserId(int userId);
 
 }

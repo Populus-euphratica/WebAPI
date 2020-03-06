@@ -20,6 +20,8 @@ public interface AdminService {
     public Admin selectByIdAdmin(int admin_id);
 
     //    按照账号查询指定用户
-    public Admin selectByEmailAdmin(String admin_id);
+    public Admin selectByEmailAdmin(String email);
+
+
 
 }

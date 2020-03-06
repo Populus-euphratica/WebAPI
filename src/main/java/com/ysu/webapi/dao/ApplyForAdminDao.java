@@ -23,5 +23,5 @@ public interface ApplyForAdminDao {
 
     //    删除指定id的管理员申请
     @Delete("delete from applyforadmin where id=#{id}")
-    boolean deleteApplyById(String id);
+    boolean deleteApplyById(int id);
 }

@@ -36,6 +36,6 @@ public interface UserService {
     public boolean updateUser(User user);
 
     //    删除指定id的User
-    public boolean deleteUserById(String id);
+    public boolean deleteUserById(int id);
 
 }

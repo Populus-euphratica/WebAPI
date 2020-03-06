@@ -39,8 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean addUserInfo(UserInfo userInfo){
         boolean flag=false;
         try {
-            userInfoDao.addUserInfo(userInfo);
-            flag=true;
+            flag=userInfoDao.addUserInfo(userInfo);
         }catch (Exception e){
             System.out.println("添加userInfo失败");
             e.printStackTrace();
@@ -54,8 +53,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean updateUserInfo(UserInfo userInfo){
         boolean flag=false;
         try {
-            userInfoDao.updateUserInfo(userInfo);
-            flag=true;
+            flag=userInfoDao.updateUserInfo(userInfo);
         }catch (Exception e){
             System.out.println("更新userInfo失败");
             e.printStackTrace();

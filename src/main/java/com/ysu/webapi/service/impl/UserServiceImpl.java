@@ -81,8 +81,7 @@ public class UserServiceImpl implements UserService {
             UserInfo userInfo=new UserInfo();
             userDao.addUser(user);
             userInfo.setUserid(userDao.selectUserByEmail(user.getEmail()).getId());
-            userInfoDao.addUserInfo(userInfo);
-            flag=true;
+            flag=userInfoDao.addUserInfo(userInfo);
         }catch (Exception e){
             System.out.println("添加user失败");
             e.printStackTrace();
@@ -98,8 +97,7 @@ public class UserServiceImpl implements UserService {
     public boolean updateUser(User user){
         boolean flag=false;
         try {
-            userDao.updateUser(user);
-            flag=true;
+            flag=userDao.updateUser(user);
         }catch (Exception e){
             System.out.println("更新user信息失败");
             e.printStackTrace();
@@ -111,12 +109,11 @@ public class UserServiceImpl implements UserService {
     //    删除指定id的User   启用事务
     @Override
     @Transactional
-    public boolean deleteUserById(String id){
+    public boolean deleteUserById(int id){
         boolean flag=false;
         try {
             userDao.deleteUserById(id);
-            userInfoDao.deleteUserInfoByUserId(id);
-            flag=true;
+            flag=userInfoDao.deleteUserInfoByUserId(id);
         }catch (Exception e){
             System.out.println("删除user信息失败");
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

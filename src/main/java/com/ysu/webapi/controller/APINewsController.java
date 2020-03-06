@@ -113,7 +113,7 @@ public class APINewsController  {
     @ApiOperation(value="通过id删除APINews", notes="删除指定id的APINews")
     @ApiImplicitParam(name = "id", value = "APINews类id", required = true, dataType = "int")
     @DeleteMapping("/id")
-    public boolean deleteAPINewsById(@RequestParam String id){
+    public boolean deleteAPINewsById(@RequestParam int id){
         System.out.println("开始删除指定id的APINews!");
         return apiNewsService.deleteAPINewsById(id);
     }

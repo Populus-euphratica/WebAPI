@@ -45,7 +45,7 @@ public interface UserDao {
 
     //    删除指定id的User
     @Delete("delete from user where id=#{id}")
-    boolean deleteUserById(String id);
+    boolean deleteUserById(int id);
 
 
 

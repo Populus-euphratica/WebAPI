@@ -100,7 +100,7 @@ public class APIController {
     @ApiOperation(value="删除API", notes="删除指定id的API")
     @ApiImplicitParam(name = "id", value = "API类id", required = true, dataType = "int")
     @DeleteMapping("/id")
-    public boolean deleteAPIById(@RequestParam String id){
+    public boolean deleteAPIById(@RequestParam int id){
         System.out.println("开始删除指定id的API！");
         return apiService.deleteAPIById(id);
     }

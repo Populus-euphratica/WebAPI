@@ -4,7 +4,7 @@ public class UserInfo {
 //    用户详情id
     private int id;
 //    对应的用户id
-    private int userid;
+    private int userId;
 //    用户关注的API
     private String userConcern;
 //    用户上传的API
@@ -18,12 +18,12 @@ public class UserInfo {
         this.id = id;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getUserId() {
+        return userId;
     }
 
     public void setUserid(int userid) {
-        this.userid = userid;
+        this.userId = userId;
     }
 
     public String getUserConcern() {

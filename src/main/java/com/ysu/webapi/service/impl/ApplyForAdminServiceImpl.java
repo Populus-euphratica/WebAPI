@@ -41,8 +41,7 @@ public class ApplyForAdminServiceImpl implements ApplyForAdminService {
     public boolean addApply(ApplyForAdmin applyForAdmin){
         boolean flag=false;
         try {
-            applyForAdminDao.addApply(applyForAdmin);
-            flag=true;
+            flag=applyForAdminDao.addApply(applyForAdmin);
         }catch (Exception e){
             System.out.println("添加ApplyForAdmin失败");
             e.printStackTrace();
@@ -53,11 +52,10 @@ public class ApplyForAdminServiceImpl implements ApplyForAdminService {
 
     //    删除指定id的管理员申请
     @Override
-    public boolean deleteApplyById(String id){
+    public boolean deleteApplyById(int id){
         boolean flag=false;
         try {
-            applyForAdminDao.deleteApplyById(id);
-            flag=true;
+            flag=applyForAdminDao.deleteApplyById(id);
         }catch (Exception e){
             System.out.println("删除ApplyForAdmin失败");
             e.printStackTrace();

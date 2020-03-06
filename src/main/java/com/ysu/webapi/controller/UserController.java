@@ -114,7 +114,7 @@ public class UserController {
     @ApiOperation(value="通过id删除User", notes="删除指定id的User")
     @ApiImplicitParam(name = "id", value = "User类id", required = true, dataType = "int")
     @DeleteMapping("/id")
-    public boolean deleteUserById(@RequestParam String id){
+    public boolean deleteUserById(@RequestParam int id){
         System.out.println("开始删除指定id的User！");
         return userService.deleteUserById(id);
     }

@@ -58,7 +58,7 @@ public class ApplyForAdminController {
     @ApiOperation(value="通过id删除ApplyForAdmin", notes="删除指定id的管理员申请对象")
     @ApiImplicitParam(name = "id", value = "ApplyForAdmin类id", required = true, dataType = "int")
     @DeleteMapping("/id")
-    public boolean deleteApplyById(@RequestParam String id){
+    public boolean deleteApplyById(@RequestParam int id){
         System.out.println("开始删除指定id的管理员申请！");
         return applyForAdminService.deleteApplyById(id);
     }

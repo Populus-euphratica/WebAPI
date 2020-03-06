@@ -18,8 +18,7 @@ public class AdminServiceImpl implements AdminService {
     public boolean addAdmin(Admin admin) {
         boolean flag = false;
         try {
-            adminDao.addAdmin(admin);
-            flag = true;
+           flag=adminDao.addAdmin(admin);
         } catch (Exception e) {
             System.out.println("添加管理员失败！");
             e.printStackTrace();
@@ -33,9 +32,8 @@ public class AdminServiceImpl implements AdminService {
     public boolean updateAdmin(Admin admin) {
         boolean flag = false;
         try {
-            adminDao.updateAdmin(admin);
+            flag=adminDao.updateAdmin(admin);
             System.out.println("更新管理员成功！");
-            flag=true;
         } catch (Exception e) {
             System.out.println("更新失败！");
             e.printStackTrace();
