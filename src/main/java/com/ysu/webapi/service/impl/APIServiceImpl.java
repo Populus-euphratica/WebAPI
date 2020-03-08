@@ -43,7 +43,7 @@ public class APIServiceImpl implements APIService {
         return page;
     }
 
-    // 全部匹配
+    // 全部模糊匹配
     @Override
     public PageInfo<API> selectAPIByAll(String val,int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
@@ -52,14 +52,54 @@ public class APIServiceImpl implements APIService {
         return page;
     }
 
+    //    根据APIInfo clickNum查找排名靠前API
+    @Override
+    public List<API> selectAPIInfoByClickNum(){
+        return apiInfoDao.selectAPIInfoByClickNum();
+    }
+
+    //    根据APIInfo collectionNum查找排名靠前API
+    @Override
+    public List<API> selectAPIInfoByCollectionNum(){
+        return apiInfoDao.selectAPIInfoByCollectionNum();
+    }
+
+
+    //    根据查找所有api查找出现最多的种类并根据该种类的点击数进行推荐对应的API
+    @Override
+    public List<API> selectAPIByAllAPIRecommend(){
+        return apiDao.selectAPIByAllAPIRecommend();
+    }
+
+    //    根据全部模糊匹配查找出现最多的种类并根据该种类的点击数进行推荐对应的API
+    @Override
+    public List<API> selectAPIByAllRecommend(String val){
+        return apiDao.selectAPIByAllRecommend(val);
+    }
+
+    //    根据指定的API category查找出现最多的种类并根据该种类的点击数进行推荐对应的API
+    @Override
+    public List<API> selectAPIByCategoryRecommend(String category){
+        return apiDao.selectAPIByCategoryRecommend(category);
+    }
+
+    //    根据指定的API name查找出现最多的种类并根据该种类的点击数进行推荐对应的API
+    @Override
+    public List<API> selectAPIByNameRecommend(String name){
+        return apiDao.selectAPIByNameRecommend(name);
+    }
+
+
+
+
+
 
     //    查找所有api
     @Override
     public PageInfo<API> selectAllAPI(int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<API> list=apiDao.selectAllAPI();
-        PageInfo<API> page=new PageInfo(list,5);
-        return page;
+        return new PageInfo(list,5);
     }
 
     //     添加api

@@ -21,16 +21,6 @@ public class APIInfoServiceImpl implements APIInfoService {
     }
 
 
-    //    根据APIInfo clickNum查找排名靠前APIInfo
-    @Override
-    public List<APIInfo> selectAPIInfoByClickNum(){
-        return apiInfoDao.selectAPIInfoByClickNum();
-    }
-    //    根据APIInfo collectionNum查找排名靠前APIInfo
-    @Override
-    public List<APIInfo> selectAPIInfoByCollectionNum(){
-        return apiInfoDao.selectAPIInfoByCollectionNum();
-    }
 
     //    查找所有APIInfo
     @Override
@@ -44,7 +34,7 @@ public class APIInfoServiceImpl implements APIInfoService {
     public boolean updateAPIInfoClickNum(int apiId){
         boolean flag=false;
         try {
-            int clickNum=apiInfoDao.selectAPIInfoById(apiId).getId();
+            int clickNum=apiInfoDao.selectAPIInfoById(apiId).getClickNum();
             flag=apiInfoDao.updateAPIInfoClickNum(clickNum+1,apiId);
         }catch (Exception e){
             System.out.println("更新指定apiId的APIInfo clickNum失败");
@@ -59,7 +49,7 @@ public class APIInfoServiceImpl implements APIInfoService {
     public boolean updateAPIInfoCollectionNum(int apiId){
         boolean flag=false;
         try {
-            int collectionNum=apiInfoDao.selectAPIInfoById(apiId).getId();
+            int collectionNum=apiInfoDao.selectAPIInfoById(apiId).getCollectionNum();
             flag=apiInfoDao.updateAPIInfoCollectionNum(collectionNum+1, apiId);
         }catch (Exception e){
             System.out.println("更新指定apiId的APIInfo collectionNum失败");

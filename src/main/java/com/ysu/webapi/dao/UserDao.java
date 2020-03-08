@@ -36,6 +36,7 @@ public interface UserDao {
 
     //    添加user
     @Insert("insert into user (name,company,email,password,position) values(#{name},#{company},#{email},#{password},#{position})")
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     boolean addUser(User user);
 
 

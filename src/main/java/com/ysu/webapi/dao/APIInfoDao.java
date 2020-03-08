@@ -1,5 +1,6 @@
 package com.ysu.webapi.dao;
 
+import com.ysu.webapi.pojo.API;
 import com.ysu.webapi.pojo.APIInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -12,12 +13,12 @@ public interface APIInfoDao {
     APIInfo selectAPIInfoById(int id);
 
     //    根据APIInfo clickNum查找排名靠前APIInfo
-    @Select("select * from apiinfo ORDER BY clickNum DESC limit 1,10")
-    List<APIInfo> selectAPIInfoByClickNum();
+    @Select("select * from api as a INNER JOIN(select id from apiinfo ORDER BY clickNum DESC limit 0,8) as b on a.id=b.id")
+    List<API> selectAPIInfoByClickNum();
 
     //    根据APIInfo collectionNum查找排名靠前APIInfo
-    @Select("select * from apiinfo ORDER BY collectionNum DESC limit 1,10")
-    List<APIInfo> selectAPIInfoByCollectionNum();
+    @Select("select * from api as a INNER JOIN(select id from apiinfo ORDER BY collectionNum DESC limit 0,8) as b on a.id=b.id")
+    List<API> selectAPIInfoByCollectionNum();
 
     //    查找所有APIInfo
     @Select("select * from apiinfo")
@@ -30,7 +31,7 @@ public interface APIInfoDao {
     boolean updateAPIInfoClickNum(int clickNum,int id);
 
     //    更新指定apiId的APIInfo collectionNum
-    @Update("update apiinfo set collectionNum=#{collectionNum} where id=#{iId}")
+    @Update("update apiinfo set collectionNum=#{collectionNum} where id=#{id}")
     boolean updateAPIInfoCollectionNum(int collectionNum,int id);
     //    删除指定apiId的APIInfo
     @Delete("delete from apiinfo where id=#{id}")
