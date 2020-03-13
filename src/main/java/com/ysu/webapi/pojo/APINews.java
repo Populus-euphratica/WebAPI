@@ -11,11 +11,13 @@ public class APINews {
 //    新闻作者
     private String author;
 //    发表日期
-    private Date data;
+    private Date date;
 //    资讯种类
     private String category;
 //    新闻内容
     private String content;
+//    资讯简介
+    private String contentBrief;
 
     public int getId() {
         return id;
@@ -41,12 +43,12 @@ public class APINews {
         this.author = author;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCategory() {
@@ -63,5 +65,13 @@ public class APINews {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getContentBrief() {
+        return contentBrief;
+    }
+
+    public void setContentBrief(String contentBrief) {
+        this.contentBrief = contentBrief;
     }
 }
