@@ -12,6 +12,8 @@ public class APINews {
     private String author;
 //    发表日期
     private Date data;
+//    资讯种类
+    private String category;
 //    新闻内容
     private String content;
 
@@ -45,6 +47,14 @@ public class APINews {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getContent() {

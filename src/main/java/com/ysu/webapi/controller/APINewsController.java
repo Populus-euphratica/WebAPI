@@ -79,6 +79,32 @@ public class APINewsController  {
         return apiNewsService.selectAPINewsByDate(data,pageNum,pageSize);
     }
 
+
+    //    根据指定的APINews category查找对应的APINews
+    @ApiOperation(value="通过category查找APINews", notes="输入APINews category，查询APINews，返回所有符合的APINews对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "category", value = "APINews类category", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
+    @GetMapping("/category")
+    public PageInfo<APINews> selectAPINewsByCategory(@RequestParam String category,@RequestParam int pageNum){
+        System.out.println("开始根据指定的APINews category查找对应的APINews!");
+        return apiNewsService.selectAPINewsByCategory(category,pageNum,pageSize);
+    }
+
+    //    根据指定的APINews 全部模糊匹配查找对应的APINews
+    @ApiOperation(value="通过全部模糊匹配查找APINews", notes="根据指定的val启用全部模糊匹配从name、category和author中模糊匹配查找对应符合的APINews对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "val", value = "String类val", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
+    @GetMapping("/all")
+    public PageInfo<APINews> selectAPINewsByAll(@RequestParam String val,@RequestParam int pageNum){
+        System.out.println("开始根据指定的APINews 全部模糊匹配查找对应的APINews!");
+        return apiNewsService.selectAPINewsByAll(val,pageNum,pageSize);
+    }
+
+
     //    查找所有APINews
     @ApiOperation(value="查找所有APINews", notes="查找所有APINews")
     @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")

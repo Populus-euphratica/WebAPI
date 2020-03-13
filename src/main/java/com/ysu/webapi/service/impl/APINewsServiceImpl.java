@@ -59,6 +59,25 @@ public class APINewsServiceImpl implements APINewsService {
         return page;
     }
 
+
+    //    根据指定的APINews category查找对应的APINews
+    @Override
+    public PageInfo<APINews> selectAPINewsByCategory(String category,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByCategory(category);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
+    }
+
+    //    根据指定的APINews 全部模糊匹配查找对应的APINews
+    @Override
+    public PageInfo<APINews> selectAPINewsByAll(String val,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<APINews> list=apiNewsDao.selectAPINewsByAll(val);
+        PageInfo<APINews> page=new PageInfo(list,5);
+        return page;
+    }
+
     //    查找所有APINews
     @Override
     public PageInfo<APINews> selectAllAPINews(int pageNum,int pageSize){
