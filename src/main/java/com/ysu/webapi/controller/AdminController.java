@@ -61,6 +61,15 @@ public class AdminController {
         return adminService.selectByIdAdmin(id);
     }
 
+
+    //    按照账号查询指定用户
+    @ApiOperation(value="按照管理员email查找管理员", notes="输入管理员email ，查询管理员，返回单个Admin对象")
+    @ApiImplicitParam(name = "email", value = "管理员email", required = true, paramType = "query", dataType = "String")
+    @GetMapping("/email")
+    public Admin selectByEmailAdmin(@RequestParam String email){
+        return adminService.selectByEmailAdmin(email);
+    }
+
     @ApiOperation(value="验证登陆", notes="输入管理员账号，查询管理员，返回单个Admin对象")
     @ApiImplicitParam(name = "admin1", value = "管理员类详细实体admin", required = true, dataType = "Admin")
     @PostMapping("/login")
@@ -73,6 +82,9 @@ public class AdminController {
         }
         return false;
     }
+
+
+
 
     @PostMapping("/loginVerify")
     public void loginVAdmin(@RequestParam String ticket,@RequestParam String randstr,@RequestParam String userIp){

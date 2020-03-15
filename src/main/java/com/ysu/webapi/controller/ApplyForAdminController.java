@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.ApplyForAdmin;
 import com.ysu.webapi.service.ApplyForAdminService;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,25 @@ public class ApplyForAdminController {
         return applyForAdminService.selectApplyById(id);
     }
 
+    //根据是否被审核查找符合的ApplyForAdmin
+    @ApiOperation(value="查找ApplyForAdmin", notes="输入ApplyForAdmin istrue，根据是否被审核从ApplyForAdmin中查找符合的ApplyForAdmin，返回ApplyForAdmin")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "istrue", value = "ApplyForAdmin类属性istrue", required = true, dataType = "boolen"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
+    @GetMapping("/istrue")
+    public PageInfo<ApplyForAdmin> selectApplyByIstrue(@RequestParam boolean istrue,@RequestParam int pageNum){
+        return applyForAdminService.selectApplyByIstrue(istrue,pageNum,pageSize);
+    }
+
+    //    获取是否被审核的数目
+    @ApiOperation(value="查找ApplyFromAdmin是否被审核的数目", notes="输入ApplyFromAdmin istrue，根据是否被审核从ApplyFromAdmin中查找符合的ApplyFromAdmin，返回是否被审核的数目")
+    @ApiImplicitParam(name = "istrue", value = "ApplyFromAdmin类属性istrue", required = true, dataType = "boolen")
+    @GetMapping("/istrue/sum")
+    public int selectApplyByIstrueToSum(@RequestParam boolean istrue){
+        return applyForAdminService.selectApplyByIstrueToSum(istrue);
+    }
+    
     //    查找所有管理员申请对象
     @ApiOperation(value="查找全部管理员申请对象", notes="返回所有ApplyForAdmin对象")
     @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
@@ -51,6 +71,20 @@ public class ApplyForAdminController {
     public boolean addApply(@RequestBody ApplyForAdmin applyForAdmin){
         System.out.println("开始添加管理员申请！");
         return applyForAdminService.addApply(applyForAdmin);
+    }
+
+
+    //更新申请状态
+    @ApiOperation(value="添加ApplyForAdmin", notes="输入ApplyForAdmin对象，创建ApplyForAdmin，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "istrue", value = "ApplyForAdmin类属性istrue", required = true, dataType = "boolean"),
+            @ApiImplicitParam(name = "decide", value = "ApplyForAdmin类属性decide", required = true, dataType = "boolean"),
+            @ApiImplicitParam(name = "id", value = "ApplyForAdmin类详属性id", required = true, dataType = "int")
+    })
+    @PutMapping("/id")
+    public boolean updateApply(boolean istrue,boolean decide,int id){
+        System.out.println("开始更新申请状态！");
+        return applyForAdminService.updateApply(istrue, decide,id);
     }
 
 

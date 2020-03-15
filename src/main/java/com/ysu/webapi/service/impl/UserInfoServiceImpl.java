@@ -20,11 +20,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
 
-    //    根据指定的userInfo userId查找对应的userInfo
-    @Override
-    public UserInfo selectUserInfoByUserId(int userid){
-        return userInfoDao.selectUserInfoByUserId(userid);
-    }
 
     //    查找所有userInfo
     @Override

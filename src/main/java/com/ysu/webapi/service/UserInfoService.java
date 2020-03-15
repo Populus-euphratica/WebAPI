@@ -10,12 +10,8 @@ public interface UserInfoService {
     public UserInfo selectUserInfoById(int id);
 
 
-    //    根据指定的userInfo userId查找对应的userInfo
-    public UserInfo selectUserInfoByUserId(int userid);
-
     //    查找所有userInfo
     public List<UserInfo> selectUserInfoAll();
-
 
 
     //    添加userInfo

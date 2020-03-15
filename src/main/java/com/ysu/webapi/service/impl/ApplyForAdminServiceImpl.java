@@ -21,6 +21,22 @@ public class ApplyForAdminServiceImpl implements ApplyForAdminService {
         return applyForAdminDao.selectApplyById(id);
     }
 
+
+    //根据是否被审核查找符合的ApplyForAdmin
+    @Override
+    public PageInfo<ApplyForAdmin> selectApplyByIstrue(boolean istrue,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<ApplyForAdmin> list=applyForAdminDao.selectApplyByIstrue(istrue);
+        PageInfo<ApplyForAdmin> page=new PageInfo(list,5);
+        return page;
+    }
+
+    //    获取是否被审核的数目
+    @Override
+    public int selectApplyByIstrueToSum(boolean istrue){
+        return applyForAdminDao.selectApplyByIstrueToSum(istrue);
+    }
+
     //    查找所有管理员申请
     @Override
     public PageInfo<ApplyForAdmin> selectApplyAll(int pageNum, int pageSize){
@@ -49,6 +65,19 @@ public class ApplyForAdminServiceImpl implements ApplyForAdminService {
         return flag;
     }
 
+
+    //更新申请状态
+    @Override
+    public boolean updateApply(boolean istrue,boolean decide,int id){
+        boolean flag=false;
+        try {
+            flag=applyForAdminDao.updateApply(istrue,decide,id);
+        }catch (Exception e){
+            System.out.println("更新申请状态失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
 
     //    删除指定id的管理员申请
     @Override

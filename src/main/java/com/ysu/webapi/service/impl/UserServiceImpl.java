@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
         try{
             UserInfo userInfo=new UserInfo();
             userDao.addUser(user);
-            userInfo.setUserid(userDao.selectUserByEmail(user.getEmail()).getId());
+            userInfo.setId(user.getId());
             flag=userInfoDao.addUserInfo(userInfo);
         }catch (Exception e){
             System.out.println("添加user失败");
@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService {
         boolean flag=false;
         try {
             userDao.deleteUserById(id);
-            flag=userInfoDao.deleteUserInfoByUserId(id);
+            flag=userInfoDao.deleteUserInfoById(id);
         }catch (Exception e){
             System.out.println("删除user信息失败");
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

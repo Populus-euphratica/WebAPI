@@ -13,6 +13,8 @@ public interface AdminService {
     //    更改管理员信息
     public boolean updateAdmin(Admin admin);
 
+
+
     //    查找全部管理员
     public List<Admin> selectAllAdmin();
 
