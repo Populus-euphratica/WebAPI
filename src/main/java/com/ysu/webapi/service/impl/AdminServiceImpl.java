@@ -1,24 +1,29 @@
 package com.ysu.webapi.service.impl;
 
 import com.ysu.webapi.dao.AdminDao;
+import com.ysu.webapi.dao.ApplyForAdminDao;
 import com.ysu.webapi.pojo.Admin;
 import com.ysu.webapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private ApplyForAdminDao applyForAdminDao;
 
     // 添加管理员
     @Override
     public boolean addAdmin(Admin admin) {
         boolean flag = false;
         try {
-           flag=adminDao.addAdmin(admin);
+            flag = adminDao.addAdmin(admin);
         } catch (Exception e) {
             System.out.println("添加管理员失败！");
             e.printStackTrace();
@@ -26,13 +31,30 @@ public class AdminServiceImpl implements AdminService {
         return flag;
     }
 
+    //更新申请状态及添加管理员
+    @Override
+    @Transactional
+    public boolean updateApplyAndAddAdmin(boolean decide, int id, Admin admin) {
+        boolean flag = false;
+        try {
+            applyForAdminDao.updateApply(decide, id);
+            flag = adminDao.addAdmin(admin);
+//            if(!flag){
+//                throw new Exception("更新申请状态及添加管理员失败");
+//            }
+        } catch (Exception e) {
+            System.out.println("更新申请状态及添加管理员失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
 
     // 更新管理员信息
     @Override
     public boolean updateAdmin(Admin admin) {
         boolean flag = false;
         try {
-            flag=adminDao.updateAdmin(admin);
+            flag = adminDao.updateAdmin(admin);
             System.out.println("更新管理员成功！");
         } catch (Exception e) {
             System.out.println("更新失败！");
@@ -49,13 +71,13 @@ public class AdminServiceImpl implements AdminService {
 
     // 按照ID查找管理员
     @Override
-    public Admin selectByIdAdmin(int admin_id){
+    public Admin selectByIdAdmin(int admin_id) {
         return adminDao.selectByIdAdmin(admin_id);
     }
 
     // 按照账号查找管理员
     @Override
-    public Admin selectByEmailAdmin(String email){
+    public Admin selectByEmailAdmin(String email) {
         return adminDao.selectByEmailAdmin(email);
     }
 

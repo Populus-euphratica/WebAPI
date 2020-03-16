@@ -60,7 +60,7 @@ public class FeedBackServiceImpl implements FeedBackService {
         return flag;
     }
 
-    //更新管理员对反馈的回复
+    //更新管理员对反馈的回复及状态
     @Override
     public boolean updateFeedBackToReply(String reply,int id){
         boolean flag=false;

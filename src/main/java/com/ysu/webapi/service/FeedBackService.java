@@ -22,7 +22,7 @@ public interface FeedBackService {
     //更新一条反馈记录
     public boolean updateFeedBack(FeedBack feedBack);
 
-    //更新管理员对反馈的回复
+    //更新管理员对反馈的回复及状态
     public boolean updateFeedBackToReply(String reply,int id);
 
     //删除一条反馈记录

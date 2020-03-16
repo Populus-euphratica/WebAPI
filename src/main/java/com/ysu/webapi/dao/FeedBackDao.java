@@ -25,7 +25,7 @@ public interface FeedBackDao {
     @Update("update feedback set theme=#{theme},content=#{content},date=#{date},userid=#{userid},istrue=#{istrue},reply=#{reply}where id=#{id}")
     boolean updateFeedBack(FeedBack feedBack);
 
-    //更新管理员对反馈的回复
+    //更新管理员对反馈的回复及状态
     @Update("update feedback set reply=#{reply},istrue=true where id=#{id}")
     boolean updateFeedBackToReply(String reply,int id);
     //删除一条反馈记录

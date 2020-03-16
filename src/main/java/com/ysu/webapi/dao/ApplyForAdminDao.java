@@ -31,8 +31,8 @@ public interface ApplyForAdminDao {
     boolean addApply(ApplyForAdmin applyForAdmin);
 
     //更新申请状态
-    @Update("update applyforadmin set istrue=#{istrue},decide=#{decide} where id=#{id}")
-    boolean updateApply(boolean istrue,boolean decide,int id);
+    @Update("update applyforadmin set istrue=true,decide=#{decide} where id=#{id}")
+    boolean updateApply(boolean decide,int id);
 
     //    删除指定id的管理员申请
     @Delete("delete from applyforadmin where id=#{id}")

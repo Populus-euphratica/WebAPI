@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import static com.ysu.webapi.WebapiApplication.pageSize;
+
 
 @RestController
 @RequestMapping(value = "/api/feedBack")
@@ -19,7 +19,7 @@ public class FeedBackController {
 
     @Autowired
     private FeedBackService feedBackService;
-
+    private int pageSize=5;
 
     //根据指定id号从feedback中查找符合的FeedBack
     @ApiOperation(value = "查找FeedBack", notes = "输入FeedBack id，根据指定id号从feedback中查找符合的FeedBack，返回FeedBack")
@@ -69,7 +69,7 @@ public class FeedBackController {
         return feedBackService.updateFeedBack(feedBack);
     }
 
-    //更新管理员对反馈的回复
+    //更新管理员对反馈的回复及状态
     @ApiOperation(value = "更新FeedBack", notes = "输入reply，更新管理员对反馈的回复，更新FeedBack，返回true")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "reply", value = "FeedBack类属性reply", required = true, dataType = "String"),
@@ -77,7 +77,7 @@ public class FeedBackController {
     })
     @PutMapping("/reply")
     public boolean updateFeedBackToReply(@RequestParam String reply, @RequestParam int id) {
-        System.out.println("更新管理员对反馈的回复");
+        System.out.println("更新管理员对反馈的回复及状态");
         return feedBackService.updateFeedBackToReply(reply, id);
     }
 

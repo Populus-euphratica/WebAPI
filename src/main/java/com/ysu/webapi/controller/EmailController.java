@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping(value = "/api/email")
 public class EmailController {
@@ -19,8 +21,9 @@ public class EmailController {
             @ApiImplicitParam(name = "content", value = "内容", required = true, paramType = "query", dataType = "String")
     })
     @PostMapping("/")
-    public boolean sendHtmlMail(@RequestParam String to, @RequestParam String content){
+    public boolean sendHtmlMail(@RequestParam String to, @RequestParam  String content){
         System.out.println("向"+to+"发送邮件！");
         return service.sendHtmlMail(to,content);
     }
+
 }

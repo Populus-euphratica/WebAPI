@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.ysu.webapi.WebapiApplication.pageSize;
+
 
 @RestController
 @RequestMapping(value = "/api/applyForAdmin")
@@ -17,6 +17,7 @@ public class ApplyForAdminController {
 
     @Autowired
     private ApplyForAdminService applyForAdminService;
+    private int pageSize=5;
 
     //    根据指定的id查找对应的管理员申请对象
     @ApiOperation(value="按照指定的id查找对应的管理员申请对象", notes="输入管理员申请对象ID ，查询管理员申请对象，返回单个ApplyForAdmin对象")
@@ -77,14 +78,13 @@ public class ApplyForAdminController {
     //更新申请状态
     @ApiOperation(value="添加ApplyForAdmin", notes="输入ApplyForAdmin对象，创建ApplyForAdmin，返回true")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "istrue", value = "ApplyForAdmin类属性istrue", required = true, dataType = "boolean"),
             @ApiImplicitParam(name = "decide", value = "ApplyForAdmin类属性decide", required = true, dataType = "boolean"),
             @ApiImplicitParam(name = "id", value = "ApplyForAdmin类详属性id", required = true, dataType = "int")
     })
     @PutMapping("/id")
-    public boolean updateApply(boolean istrue,boolean decide,int id){
+    public boolean updateApply(boolean decide,int id){
         System.out.println("开始更新申请状态！");
-        return applyForAdminService.updateApply(istrue, decide,id);
+        return applyForAdminService.updateApply(decide,id);
     }
 
 
