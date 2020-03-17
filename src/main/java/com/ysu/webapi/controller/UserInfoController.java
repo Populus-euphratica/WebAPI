@@ -22,6 +22,22 @@ public class UserInfoController {
     }
 
 
+    //    根据指定的userInfo id查找对应的userConcern
+    @ApiOperation(value="通过id查找UserInfo对应的userConcern", notes="输入UserInfo id，查询User，返回对应的userConcern")
+    @ApiImplicitParam(name = "id", value = "UserInfo类id", required = true, dataType = "int")
+    @GetMapping("/concern/id")
+    public String selectUserInfoByIdToConcern(int id){
+        return userInfoService.selectUserInfoByIdToConcern(id);
+    }
+
+    //    根据指定的userInfo id查找对应的userUpload
+    @ApiOperation(value="通过id查找UserInfo对应的userUpload", notes="输入UserInfo id，查询User，返回对应的userUpload")
+    @ApiImplicitParam(name = "id", value = "UserInfo类id", required = true, dataType = "int")
+    @GetMapping("/upload/id")
+    public String selectUserInfoByIdToUpload(int id){
+        return userInfoService.selectUserInfoByIdToUpload(id);
+    }
+
     //    查找所有userInfo
     @ApiOperation(value="查找所有UserInfo", notes="查找所有UserInfo")
     @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
@@ -30,22 +46,6 @@ public class UserInfoController {
         return userInfoService.selectUserInfoAll(pageNum, pageSize);
     }
 
-
-    //    查找所有userInfo userConcern
-    @ApiOperation(value="查找所有UserInfo userConcern", notes="查找所有UserInfo userConcern")
-    @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
-    @GetMapping("/concern")
-    PageInfo<UserInfo> selectUserInfoAllConcern(@RequestParam int pageNum){
-        return userInfoService.selectUserInfoAllConcern(pageNum, pageSize);
-    }
-
-    //    查找所有userInfo userUpload
-    @ApiOperation(value="查找所有UserInfo userUpload", notes="查找所有UserInfo userUpload")
-    @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
-    @GetMapping("/upload")
-    PageInfo<UserInfo> selectUserInfoAllUpload(@RequestParam int pageNum){
-        return userInfoService.selectUserInfoAllUpload(pageNum, pageSize);
-    }
 
 
 

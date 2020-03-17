@@ -10,16 +10,16 @@ public interface UserInfoService {
     //    根据指定的userInfo id查找对应的userInfo
     public UserInfo selectUserInfoById(int id);
 
+    //    根据指定的userInfo id查找对应的userConcern
+    public String selectUserInfoByIdToConcern(int id);
+
+    //    根据指定的userInfo id查找对应的userUpload
+    public String selectUserInfoByIdToUpload(int id);
+
 
     //    查找所有userInfo
     public PageInfo<UserInfo> selectUserInfoAll(int pageNum, int pageSize);
 
-
-    //    查找所有userInfo userConcern
-    PageInfo<UserInfo> selectUserInfoAllConcern(int pageNum, int pageSize);
-
-    //    查找所有userInfo userUpload
-    PageInfo<UserInfo> selectUserInfoAllUpload(int pageNum, int pageSize);
 
 
 

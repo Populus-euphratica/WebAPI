@@ -22,7 +22,17 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoDao.selectUserInfoById(id);
     }
 
+    //    根据指定的userInfo id查找对应的userConcern
+    @Override
+    public String selectUserInfoByIdToConcern(int id){
+        return userInfoDao.selectUserInfoByIdToConcern(id);
+    }
 
+    //    根据指定的userInfo id查找对应的userUpload
+    @Override
+    public String selectUserInfoByIdToUpload(int id){
+        return userInfoDao.selectUserInfoByIdToUpload(id);
+    }
 
     //    查找所有userInfo
     @Override
@@ -32,21 +42,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         return new PageInfo(list,5);
     }
 
-    //    查找所有userInfo userConcern
-    @Override
-    public PageInfo<UserInfo> selectUserInfoAllConcern(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        List<UserInfo> list=userInfoDao.selectUserInfoAllConcern();
-        return new PageInfo(list,5);
-    }
-
-    //    查找所有userInfo userUpload
-    @Override
-    public PageInfo<UserInfo> selectUserInfoAllUpload(int pageNum, int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        List<UserInfo> list=userInfoDao.selectUserInfoAllUpload();
-        return new PageInfo(list,5);
-    }
 
 
 

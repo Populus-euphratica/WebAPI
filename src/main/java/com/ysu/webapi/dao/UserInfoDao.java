@@ -11,19 +11,17 @@ public interface UserInfoDao {
     @Select("select * from userinfo where id=#{id}")
     UserInfo selectUserInfoById(int id);
 
+    //    根据指定的userInfo id查找对应的userConcern
+    @Select("select * from userinfo where id=#{id}")
+    String selectUserInfoByIdToConcern(int id);
 
+    //    根据指定的userInfo id查找对应的userUpload
+    @Select("select * from userinfo where id=#{id}")
+    String selectUserInfoByIdToUpload(int id);
 
     //    查找所有userInfo
     @Select("select * from userinfo")
     List<UserInfo> selectUserInfoAll();
-
-    //    查找所有userInfo userConcern
-    @Select("select id,userConcern from userinfo")
-    List<UserInfo> selectUserInfoAllConcern();
-
-    //    查找所有userInfo userUpload
-    @Select("select id,userUpload from userinfo")
-    List<UserInfo> selectUserInfoAllUpload();
 
 
 
