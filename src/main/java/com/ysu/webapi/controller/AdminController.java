@@ -85,6 +85,14 @@ public class AdminController {
         return false;
     }
 
+
+    //     获取未读消息总和
+    @ApiOperation(value = "获取未读消息总和", notes = "获取未读消息总和，返回int类型总数")
+    @GetMapping("/message/sum")
+    public int selectMessageSum() {
+        return adminService.selectMessageSum();
+    }
+
     //更新申请状态及添加管理员
     @ApiOperation(value = "更新申请状态及添加管理员", notes = "输入Admin对象及ApplyForAdmin类属性decide，id，创建管理员，返回true")
     @ApiImplicitParams({

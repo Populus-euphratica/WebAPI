@@ -10,6 +10,9 @@ public interface AdminDao {
 //    根据指定的管理员id查找对应的管理员
     @Select("select * from admin where id=#{admin_id}")
     Admin selectByIdAdmin(int admin_id);
+
+
+
 //    查找所有管理员
     @Select("select * from admin")
     List<Admin> selectAllAdmin();
@@ -22,4 +25,6 @@ public interface AdminDao {
 //    更新管理员信息
     @Update("update admin set name=#{name},email=#{email},password=#{password} where id=#{id}")
     boolean updateAdmin(Admin admin);
+
+
 }

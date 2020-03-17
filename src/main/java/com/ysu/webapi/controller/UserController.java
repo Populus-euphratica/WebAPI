@@ -79,7 +79,7 @@ public class UserController {
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/all")
-    public PageInfo<User> selectUserByAll(String val,int pageNum){
+    public PageInfo<User> selectUserByAll(@RequestParam String val,@RequestParam int pageNum){
         System.out.println("模糊查找,查找对应的user！");
         return userService.selectUserByAll(val,pageNum,pageSize);
     }

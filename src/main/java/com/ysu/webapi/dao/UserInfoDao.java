@@ -12,9 +12,18 @@ public interface UserInfoDao {
     UserInfo selectUserInfoById(int id);
 
 
+
     //    查找所有userInfo
     @Select("select * from userinfo")
     List<UserInfo> selectUserInfoAll();
+
+    //    查找所有userInfo userConcern
+    @Select("select id,userConcern from userinfo")
+    List<UserInfo> selectUserInfoAllConcern();
+
+    //    查找所有userInfo userUpload
+    @Select("select id,userUpload from userinfo")
+    List<UserInfo> selectUserInfoAllUpload();
 
 
 
@@ -23,9 +32,13 @@ public interface UserInfoDao {
     boolean addUserInfo(UserInfo userInfo);
 
 
-    //    更新userInfo信息
-    @Update("update userinfo set userConcern=#{userConcern},userUpload=#{userUpload} where id=#{id}")
-    boolean updateUserInfo(UserInfo userInfo);
+    //    更新userInfo Concern信息
+    @Update("update userinfo set userConcern=#{userConcern}where id=#{id}")
+    boolean updateUserInfoConcern(UserInfo userInfo);
+
+    //    更新userInfo Upload信息
+    @Update("update userinfo set userUpload=#{userUpload} where id=#{id}")
+    boolean updateUserInfoUpload(UserInfo userInfo);
 
     //    删除指定id的userInfo
     @Delete("delete from userinfo where id=#{id}")

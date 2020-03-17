@@ -2,6 +2,7 @@ package com.ysu.webapi.service.impl;
 
 import com.ysu.webapi.dao.AdminDao;
 import com.ysu.webapi.dao.ApplyForAdminDao;
+import com.ysu.webapi.dao.FeedBackDao;
 import com.ysu.webapi.pojo.Admin;
 import com.ysu.webapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class AdminServiceImpl implements AdminService {
     private AdminDao adminDao;
     @Autowired
     private ApplyForAdminDao applyForAdminDao;
+    @Autowired
+    private FeedBackDao feedBackDao;
 
     // 添加管理员
     @Override
@@ -79,6 +82,18 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin selectByEmailAdmin(String email) {
         return adminDao.selectByEmailAdmin(email);
+    }
+
+    //     获取未读消息总和
+    @Override
+    public int selectMessageSum(){
+        try {
+            return feedBackDao.selectFeedBackByIstrueToSum(false)+applyForAdminDao.selectApplyByIstrueToSum(false);
+        }catch (Exception e){
+            System.out.println("获取未读消息总和失败！");
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 }

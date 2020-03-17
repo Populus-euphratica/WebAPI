@@ -25,6 +25,8 @@ public interface AdminService {
     //    按照账号查询指定用户
     public Admin selectByEmailAdmin(String email);
 
+    //     获取未读消息总和
+    public int selectMessageSum();
 
 
 }
