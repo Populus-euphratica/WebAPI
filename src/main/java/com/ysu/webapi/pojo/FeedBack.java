@@ -10,13 +10,15 @@ public class FeedBack {
 //    反馈的内容
     private String content;
 //    反馈用户的id
-    private int userid;
+    private int userId;
 //    反馈日期
     private Date date;
 //    反馈是否被审核
     private boolean istrue;
 //    管理员的回复
     private String reply;
+//    回复还是忽略
+    private boolean decide;
 
     public int getId() {
         return id;
@@ -43,12 +45,12 @@ public class FeedBack {
         this.content = content;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public boolean isIstrue() {
@@ -73,5 +75,13 @@ public class FeedBack {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean isDecide() {
+        return decide;
+    }
+
+    public void setDecide(boolean decide) {
+        this.decide = decide;
     }
 }

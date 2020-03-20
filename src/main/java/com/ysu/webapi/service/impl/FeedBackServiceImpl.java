@@ -62,10 +62,10 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     //更新管理员对反馈的回复及状态
     @Override
-    public boolean updateFeedBackToReply(String reply,int id){
+    public boolean updateFeedBackToReply(String reply,boolean decide,int id){
         boolean flag=false;
         try {
-            flag=feedBackDao.updateFeedBackToReply(reply,id);
+            flag=feedBackDao.updateFeedBackToReply(reply,decide,id);
         }catch (Exception e){
             System.out.println("更新管理员对反馈的回复失败！");
             e.printStackTrace();

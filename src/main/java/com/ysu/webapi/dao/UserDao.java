@@ -44,6 +44,16 @@ public interface UserDao {
     @Update("update user set name=#{name},company=#{company},email=#{email},password=#{password},position=#{position} where id=#{id}")
     boolean updateUser(User user);
 
+    //    根据id更新user信息姓名、公司
+    @Update("update user set name=#{name},company=#{company} where id=#{id}")
+    boolean updateUserNameAndCompany(String name,String company,int id);
+
+
+    //    根据id更新user信息姓名、公司
+    @Update("update user set password=#{password} where id=#{id}")
+    boolean updateUserPassword(String password,int id);
+
+
     //    删除指定id的User
     @Delete("delete from user where id=#{id}")
     boolean deleteUserById(int id);

@@ -11,7 +11,7 @@ public interface FeedBackDao {
     @Select("select * from feedback where id=#{id}")
     FeedBack selectFeedBackById(int id);
     //根据是否被审核查找符合的FeedBack
-    @Select("select feedback.id,theme,content,date,reply,company,userid,user.name,email from feedback,user where istrue=#{istrue} and feedback.userid=user.id")
+    @Select("select feedback.id,theme,content,date,reply,decide,company,userId,user.name,email from feedback,user where istrue=#{istrue} and feedback.userId=user.id")
     List<FeedBackShow> selectFeedBackByIstrue(boolean istrue);
 
 //    获取是否被审核的数目
@@ -19,15 +19,15 @@ public interface FeedBackDao {
     int selectFeedBackByIstrueToSum(boolean istrue);
 
     //添加一条反馈记录
-    @Insert("insert into feedback (theme,content,date,userid,istrue) values(#{theme},#{content},#{date},#{userid},false)")
+    @Insert("insert into feedback (theme,content,date,userId,istrue,decide) values(#{theme},#{content},#{date},#{userId},false,false)")
     boolean addFeedBack(FeedBack feedBack);
     //更新一条反馈记录
-    @Update("update feedback set theme=#{theme},content=#{content},date=#{date},userid=#{userid},istrue=#{istrue},reply=#{reply}where id=#{id}")
+    @Update("update feedback set theme=#{theme},content=#{content},date=#{date},userId=#{userId},istrue=#{istrue},reply=#{reply},decide=#{decide}where id=#{id}")
     boolean updateFeedBack(FeedBack feedBack);
 
     //更新管理员对反馈的回复及状态
-    @Update("update feedback set reply=#{reply},istrue=true where id=#{id}")
-    boolean updateFeedBackToReply(String reply,int id);
+    @Update("update feedback set reply=#{reply},decide=#{decide},istrue=true where id=#{id}")
+    boolean updateFeedBackToReply(String reply,boolean decide,int id);
     //删除一条反馈记录
     @Delete("delete from feedback where id=#{id}")
     boolean deleteFeedBackById(int id);

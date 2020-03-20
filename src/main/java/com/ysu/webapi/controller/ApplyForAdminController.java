@@ -31,7 +31,7 @@ public class ApplyForAdminController {
     //根据是否被审核查找符合的ApplyForAdmin
     @ApiOperation(value="查找ApplyForAdmin", notes="输入ApplyForAdmin istrue，根据是否被审核从ApplyForAdmin中查找符合的ApplyForAdmin，返回ApplyForAdmin")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "istrue", value = "ApplyForAdmin类属性istrue", required = true, dataType = "boolen"),
+            @ApiImplicitParam(name = "istrue", value = "ApplyForAdmin类属性istrue", required = true, dataType = "boolean"),
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/istrue")
@@ -41,7 +41,7 @@ public class ApplyForAdminController {
 
     //    获取是否被审核的数目
     @ApiOperation(value="查找ApplyFromAdmin是否被审核的数目", notes="输入ApplyFromAdmin istrue，根据是否被审核从ApplyFromAdmin中查找符合的ApplyFromAdmin，返回是否被审核的数目")
-    @ApiImplicitParam(name = "istrue", value = "ApplyFromAdmin类属性istrue", required = true, dataType = "boolen")
+    @ApiImplicitParam(name = "istrue", value = "ApplyFromAdmin类属性istrue", required = true, dataType = "boolean")
     @GetMapping("/istrue/sum")
     public int selectApplyByIstrueToSum(@RequestParam boolean istrue){
         return applyForAdminService.selectApplyByIstrueToSum(istrue);
@@ -77,14 +77,11 @@ public class ApplyForAdminController {
 
     //更新申请状态
     @ApiOperation(value="添加ApplyForAdmin", notes="输入ApplyForAdmin对象，创建ApplyForAdmin，返回true")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "decide", value = "ApplyForAdmin类属性decide", required = true, dataType = "boolean"),
-            @ApiImplicitParam(name = "id", value = "ApplyForAdmin类详属性id", required = true, dataType = "int")
-    })
+    @ApiImplicitParam(name = "id", value = "ApplyForAdmin类详属性id", required = true, dataType = "int")
     @PutMapping("/id")
-    public boolean updateApply(boolean decide,int id){
+    public boolean updateApply(int id){
         System.out.println("开始更新申请状态！");
-        return applyForAdminService.updateApply(decide,id);
+        return applyForAdminService.updateApply(id);
     }
 
 

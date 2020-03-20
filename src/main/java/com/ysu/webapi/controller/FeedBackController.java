@@ -33,7 +33,7 @@ public class FeedBackController {
     //根据是否被审核查找符合的FeedBack
     @ApiOperation(value = "查找FeedBack", notes = "输入FeedBack istrue，根据是否被审核从feedback中查找符合的FeedBack，返回FeedBack")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "istrue", value = "FeedBack类属性istrue", required = true, dataType = "boolen"),
+            @ApiImplicitParam(name = "istrue", value = "FeedBack类属性istrue", required = true, dataType = "boolean"),
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/istrue")
@@ -44,7 +44,7 @@ public class FeedBackController {
 
     //    获取是否被审核的数目
     @ApiOperation(value = "查找FeedBack是否被审核的数目", notes = "输入FeedBack istrue，根据是否被审核从feedback中查找符合的FeedBack，返回是否被审核的数目")
-    @ApiImplicitParam(name = "istrue", value = "FeedBack类属性istrue", required = true, dataType = "boolen")
+    @ApiImplicitParam(name = "istrue", value = "FeedBack类属性istrue", required = true, dataType = "boolean")
     @GetMapping("/istrue/sum")
     public int selectFeedBackByIstrueToSum(@RequestParam boolean istrue) {
         System.out.println("获取是否被审核的数目");
@@ -76,9 +76,9 @@ public class FeedBackController {
             @ApiImplicitParam(name = "id", value = "FeedBack类属性id", required = true, dataType = "int")
     })
     @PutMapping("/reply")
-    public boolean updateFeedBackToReply(@RequestParam String reply, @RequestParam int id) {
+    public boolean updateFeedBackToReply(@RequestParam String reply,@RequestParam boolean decide, @RequestParam int id) {
         System.out.println("更新管理员对反馈的回复及状态");
-        return feedBackService.updateFeedBackToReply(reply, id);
+        return feedBackService.updateFeedBackToReply(reply,decide, id);
     }
 
     //删除一条反馈记录

@@ -46,6 +46,8 @@ public interface APIDao {
     @Insert("insert into api (name,descriptionBrief,description,category,versions) values(#{name},#{descriptionBrief},#{description},#{category},#{versions})")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     boolean addAPI(API api);
+
+
     //    更新指定id的API
     @Update("update api set name=#{name},descriptionBrief=#{descriptionBrief},description=#{description},category=#{category},versions=#{versions} where id=#{id}")
     boolean updateAPI(API api);

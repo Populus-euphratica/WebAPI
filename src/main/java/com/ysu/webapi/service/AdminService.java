@@ -13,8 +13,8 @@ public interface AdminService {
     //    更改管理员信息
     public boolean updateAdmin(Admin admin);
 
-    //更新申请状态
-    public boolean updateApplyAndAddAdmin(boolean decide,int id, Admin admin);
+    //更新申请状态并添加管理员
+    public boolean updateApplyAndAddAdmin(int id, Admin admin);
 
     //    查找全部管理员
     public List<Admin> selectAllAdmin();

@@ -25,7 +25,7 @@ public interface ApplyForAdminService {
     public boolean addApply(ApplyForAdmin applyForAdmin);
 
     //更新申请状态
-    public boolean updateApply(boolean decide,int id);
+    public boolean updateApply(int id);
 
     //    删除指定id的管理员申请
     public boolean deleteApplyById(int id);

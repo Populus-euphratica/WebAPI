@@ -3,6 +3,7 @@ package com.ysu.webapi.service.impl;
 import com.ysu.webapi.dao.AdminDao;
 import com.ysu.webapi.dao.ApplyForAdminDao;
 import com.ysu.webapi.dao.FeedBackDao;
+import com.ysu.webapi.dao.UserUploadDao;
 import com.ysu.webapi.pojo.Admin;
 import com.ysu.webapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class AdminServiceImpl implements AdminService {
     private ApplyForAdminDao applyForAdminDao;
     @Autowired
     private FeedBackDao feedBackDao;
+    @Autowired
+    private UserUploadDao userUploadDao;
 
     // 添加管理员
     @Override
@@ -37,10 +40,10 @@ public class AdminServiceImpl implements AdminService {
     //更新申请状态及添加管理员
     @Override
     @Transactional
-    public boolean updateApplyAndAddAdmin(boolean decide, int id, Admin admin) {
+    public boolean updateApplyAndAddAdmin(int id, Admin admin) {
         boolean flag = false;
         try {
-            applyForAdminDao.updateApply(decide, id);
+            applyForAdminDao.updateApply(true, id);
             flag = adminDao.addAdmin(admin);
 //            if(!flag){
 //                throw new Exception("更新申请状态及添加管理员失败");
@@ -88,7 +91,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int selectMessageSum(){
         try {
-            return feedBackDao.selectFeedBackByIstrueToSum(false)+applyForAdminDao.selectApplyByIstrueToSum(false);
+            return feedBackDao.selectFeedBackByIstrueToSum(false)+applyForAdminDao.selectApplyByIstrueToSum(false)+userUploadDao.selectUserUploadByIstrueToSum(false);
         }catch (Exception e){
             System.out.println("获取未读消息总和失败！");
             e.printStackTrace();

@@ -2,10 +2,10 @@ package com.ysu.webapi.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ysu.webapi.dao.UserConcernDao;
 import com.ysu.webapi.dao.UserDao;
-import com.ysu.webapi.dao.UserInfoDao;
+import com.ysu.webapi.dao.UserUploadDao;
 import com.ysu.webapi.pojo.User;
-import com.ysu.webapi.pojo.UserInfo;
 import com.ysu.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Autowired
-    private UserInfoDao userInfoDao;
+    private UserConcernDao userConcernDao;
+    @Autowired
+    private UserUploadDao userUploadDao;
 
 
     //    根据指定的user id查找对应的user
@@ -78,10 +80,7 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user){
         boolean flag=false;
         try{
-            UserInfo userInfo=new UserInfo();
-            userDao.addUser(user);
-            userInfo.setId(user.getId());
-            flag=userInfoDao.addUserInfo(userInfo);
+            flag=userDao.addUser(user);
         }catch (Exception e){
             System.out.println("添加user失败");
             e.printStackTrace();
@@ -106,6 +105,34 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    //    根据id更新user信息姓名、公司
+    @Override
+    public boolean updateUserNameAndCompany(String name,String company,int id){
+        boolean flag=false;
+        try {
+            flag=userDao.updateUserNameAndCompany(name, company, id);
+        }catch (Exception e){
+            System.out.println("更新user信息失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    //    根据id更新user信息姓名、公司
+    @Override
+    public boolean updateUserPassword(String password,int id){
+        boolean flag=false;
+        try {
+            flag=userDao.updateUserPassword(password, id);
+        }catch (Exception e){
+            System.out.println("更新user信息失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
     //    删除指定id的User   启用事务
     @Override
     @Transactional
@@ -113,7 +140,8 @@ public class UserServiceImpl implements UserService {
         boolean flag=false;
         try {
             userDao.deleteUserById(id);
-            flag=userInfoDao.deleteUserInfoById(id);
+            userUploadDao.deleteUserUploadByUserId(id);
+            flag=userConcernDao.deleteUserConcernByUserId(id);
         }catch (Exception e){
             System.out.println("删除user信息失败");
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();

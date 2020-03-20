@@ -110,6 +110,35 @@ public class UserController {
         return userService.updateUser(user);
     }
 
+
+    //    根据id更新user信息姓名、公司
+    @ApiOperation(value="根据id更新user信息姓名、公司", notes="输入User name company id，根据id更新user信息姓名、公司，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "User类name", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "company", value = "User类company", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "id", value = "User类id", required = true, dataType = "int")
+    })
+    @PutMapping("/name/id")
+    public boolean updateUserNameAndCompany(String name,String company,int id){
+        System.out.println("开始根据id更新user信息姓名、公司！");
+        return userService.updateUserNameAndCompany(name, company, id);
+    }
+
+
+    //    根据id更新user密码
+    @ApiOperation(value="根据id更新user密码", notes="输入User password id，根据id更新user信息password，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "password", value = "User类password", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "id", value = "User类id", required = true, dataType = "int")
+    })
+    @PutMapping("/password/id")
+    public boolean updateUserPassword(String password,int id){
+        System.out.println("开始根据id更新user密码！");
+        return userService.updateUserPassword(password, id);
+    }
+
+
+
     //    删除指定id的User
     @ApiOperation(value="通过id删除User", notes="删除指定id的User")
     @ApiImplicitParam(name = "id", value = "User类id", required = true, dataType = "int")

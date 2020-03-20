@@ -42,8 +42,13 @@ public interface APIService {
 
 
 
-    //     添加api
+    //     添加API
     public boolean addAPI(API api);
+
+
+    //更新上传API的审核状态并添加API
+    boolean addAPIAndUpdateUserUpload(int id);
+
 
     //    更新指定id的API
     public boolean updateAPI(API api);

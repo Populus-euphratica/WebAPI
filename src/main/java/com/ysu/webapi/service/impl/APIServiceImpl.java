@@ -4,8 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.dao.APIDao;
 import com.ysu.webapi.dao.APIInfoDao;
+import com.ysu.webapi.dao.UserUploadDao;
 import com.ysu.webapi.pojo.API;
 import com.ysu.webapi.pojo.APIInfo;
+import com.ysu.webapi.pojo.UserUpload;
 import com.ysu.webapi.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class APIServiceImpl implements APIService {
     private APIDao apiDao;
     @Autowired
     private APIInfoDao apiInfoDao;
+    @Autowired
+    private UserUploadDao userUploadDao;
 
     //    根据指定的API id查找对应的API
     @Override
@@ -108,6 +112,31 @@ public class APIServiceImpl implements APIService {
     public boolean addAPI(API api){
         boolean flag=false;
         try {
+            apiDao.addAPI(api);
+            APIInfo apiInfo=new APIInfo();
+            apiInfo.setId(api.getId());
+            flag=apiInfoDao.addAPIInfo(apiInfo);
+        }catch (Exception e){
+            System.out.println("添加api失败");
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    //更新上传API的审核状态并添加api
+    @Override
+    @Transactional
+    public boolean addAPIAndUpdateUserUpload(int id){
+        boolean flag=false;
+        try {
+            API api=new API();
+            userUploadDao.updateUserUpload(true,id);
+            UserUpload userUpload=userUploadDao.selectUserConcernById(id);
+            api.setCategory(userUpload.getCategory());
+            api.setDescription(userUpload.getDescription());
+            api.setDescriptionBrief(userUpload.getDescriptionBrief());
+            api.setName(userUpload.getName());
+            api.setVersions(userUpload.getVersions());
             apiDao.addAPI(api);
             APIInfo apiInfo=new APIInfo();
             apiInfo.setId(api.getId());

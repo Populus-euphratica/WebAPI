@@ -35,6 +35,15 @@ public interface UserService {
     //    更新user信息
     public boolean updateUser(User user);
 
+
+    //    根据id更新user信息姓名、公司
+    public boolean updateUserNameAndCompany(String name,String company,int id);
+
+
+    //    根据id更新user信息姓名、公司
+    public boolean updateUserPassword(String password,int id);
+
+
     //    删除指定id的User
     public boolean deleteUserById(int id);
 

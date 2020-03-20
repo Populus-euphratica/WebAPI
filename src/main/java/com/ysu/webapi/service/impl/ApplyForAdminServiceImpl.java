@@ -68,10 +68,10 @@ public class ApplyForAdminServiceImpl implements ApplyForAdminService {
 
     //更新申请状态
     @Override
-    public boolean updateApply(boolean decide,int id){
+    public boolean updateApply(int id){
         boolean flag=false;
         try {
-            flag=applyForAdminDao.updateApply(decide,id);
+            flag=applyForAdminDao.updateApply(false,id);
         }catch (Exception e){
             System.out.println("更新申请状态失败");
             e.printStackTrace();

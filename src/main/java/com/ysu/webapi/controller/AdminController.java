@@ -96,14 +96,13 @@ public class AdminController {
     //更新申请状态及添加管理员
     @ApiOperation(value = "更新申请状态及添加管理员", notes = "输入Admin对象及ApplyForAdmin类属性decide，id，创建管理员，返回true")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "decide", value = "ApplyForAdmin类属性decide", required = true, dataType = "boolean"),
             @ApiImplicitParam(name = "id", value = "ApplyForAdmin类详属性id", required = true, dataType = "int"),
             @ApiImplicitParam(name = "admin", value = "管理员类详细实体admin", required = true, dataType = "Admin")
     })
     @PostMapping("/apply")
-    public boolean updateApplyAndAddAdmin(@RequestParam boolean decide, @RequestParam int id, @RequestBody Admin admin) {
+    public boolean updateApplyAndAddAdmin(@RequestParam int id, @RequestBody Admin admin) {
         System.out.println("开始更新申请状态及添加管理员！");
-        return adminService.updateApplyAndAddAdmin(decide, id,admin);
+        return adminService.updateApplyAndAddAdmin(id,admin);
     }
 
 
