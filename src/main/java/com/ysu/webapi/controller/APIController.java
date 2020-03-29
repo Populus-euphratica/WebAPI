@@ -2,6 +2,8 @@ package com.ysu.webapi.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APISummary;
+import com.ysu.webapi.pojo.APIVersions;
 import com.ysu.webapi.service.APIService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -130,10 +132,10 @@ public class APIController {
 
 
     //     添加api
-    @ApiOperation(value = "添加API", notes = "输入API对象，创建API，返回true")
+    @ApiOperation(value = "添加API", notes = "输入API对象，创建API，返回新增主键号")
     @ApiImplicitParam(name = "api", value = "API类详细实体api", required = true, dataType = "API")
     @PostMapping("/")
-    public boolean addAPI(@RequestBody API api) {
+    public int  addAPI(@RequestBody API api) {
         System.out.println("开始添加API！");
         return apiService.addAPI(api);
     }
@@ -147,7 +149,7 @@ public class APIController {
     @PostMapping("/userUpload")
     public boolean addAPIAndUpdateUserUpload(@RequestParam int id) {
         System.out.println("开始更新上传API的审核状态并添加API！");
-        return apiService.addAPIAndUpdateUserUpload(id);
+        return apiService.addAPIAndUpdateUploadAPI(id);
     }
 
     //    更新指定id的API

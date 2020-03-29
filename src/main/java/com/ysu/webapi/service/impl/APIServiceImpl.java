@@ -2,17 +2,16 @@ package com.ysu.webapi.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ysu.webapi.dao.APIDao;
-import com.ysu.webapi.dao.APIInfoDao;
-import com.ysu.webapi.dao.UserUploadDao;
-import com.ysu.webapi.pojo.API;
-import com.ysu.webapi.pojo.APIInfo;
-import com.ysu.webapi.pojo.UserUpload;
+import com.ysu.webapi.dao.*;
+import com.ysu.webapi.pojo.*;
 import com.ysu.webapi.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class APIServiceImpl implements APIService {
@@ -21,7 +20,11 @@ public class APIServiceImpl implements APIService {
     @Autowired
     private APIInfoDao apiInfoDao;
     @Autowired
-    private UserUploadDao userUploadDao;
+    private UploadAPIDao uploadAPIDao;
+    @Autowired
+    private APIVersionsDao apiVersionsDao;
+    @Autowired
+    private APISummaryDao apiSummaryDao;
 
     //    根据指定的API id查找对应的API
     @Override
@@ -109,41 +112,39 @@ public class APIServiceImpl implements APIService {
     //     添加api
     @Override
     @Transactional
-    public boolean addAPI(API api){
+    public int addAPI(API api){
         boolean flag=false;
         try {
             apiDao.addAPI(api);
-            APIInfo apiInfo=new APIInfo();
-            apiInfo.setId(api.getId());
-            flag=apiInfoDao.addAPIInfo(apiInfo);
+            flag=apiInfoDao.addAPIInfo(api.getId());
         }catch (Exception e){
             System.out.println("添加api失败");
             e.printStackTrace();
+            throw new RuntimeException();
         }
-        return flag;
+        return api.getId();
     }
 
     //更新上传API的审核状态并添加api
     @Override
     @Transactional
-    public boolean addAPIAndUpdateUserUpload(int id){
+    public boolean addAPIAndUpdateUploadAPI(int id){
         boolean flag=false;
         try {
             API api=new API();
-            userUploadDao.updateUserUpload(true,id);
-            UserUpload userUpload=userUploadDao.selectUserConcernById(id);
-            api.setCategory(userUpload.getCategory());
-            api.setDescription(userUpload.getDescription());
-            api.setDescriptionBrief(userUpload.getDescriptionBrief());
-            api.setName(userUpload.getName());
-            api.setVersions(userUpload.getVersions());
+            uploadAPIDao.updateUploadAPI(true,id);
+            UploadAPI uploadAPI=uploadAPIDao.selectUserConcernById(id);
+            api.setCategory(uploadAPI.getCategory());
+            api.setDescriptionBrief(uploadAPI.getDescriptionBrief());
+            api.setName(uploadAPI.getName());
             apiDao.addAPI(api);
-            APIInfo apiInfo=new APIInfo();
-            apiInfo.setId(api.getId());
-            flag=apiInfoDao.addAPIInfo(apiInfo);
+            flag=apiInfoDao.addAPIInfo(api.getId());
         }catch (Exception e){
             System.out.println("添加api失败");
             e.printStackTrace();
+        }
+        if (!flag){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
         return flag;
     }
@@ -158,6 +159,9 @@ public class APIServiceImpl implements APIService {
             System.out.println("更新api失败");
             e.printStackTrace();
         }
+        if (!flag){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }
         return flag;
     }
 
@@ -168,10 +172,19 @@ public class APIServiceImpl implements APIService {
         boolean flag=false;
         try {
             apiDao.deleteAPIById(id);
+            apiSummaryDao.deleteAPISummaryByAPIId(id);
+            List<APIVersions> apiVersionsList=apiVersionsDao.selectAPIVersionsByAPIId(id);
+            Iterator<APIVersions> it = apiVersionsList.iterator();
+            while (it.hasNext()){
+                File cashfile =new File("C:\\Users\\贾廷刚\\Desktop\\Pingendo\\Web\\default\\APILogo\\"+it.next().getLogo());
+                cashfile.delete();
+            }
+            apiVersionsDao.deleteAPIVersionsByAPIId(id);
             flag=apiInfoDao.deleteAPIInfoById(id);
         }catch (Exception e){
             System.out.println("删除API失败");
             e.printStackTrace();
+            throw new RuntimeException();
         }
         return flag;
     }

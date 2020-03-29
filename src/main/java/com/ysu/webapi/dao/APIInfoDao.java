@@ -5,6 +5,7 @@ import com.ysu.webapi.pojo.APIInfo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface APIInfoDao {
 
@@ -23,16 +24,19 @@ public interface APIInfoDao {
     //    查找所有APIInfo
     @Select("select * from apiinfo")
     List<APIInfo> selectAllAPIInfo();
+
     //     添加APIInfo
-    @Insert("insert into apiinfo (id,clickNum,collectionNum) values(#{id},#{clickNum},#{collectionNum})")
-    boolean addAPIInfo(APIInfo apiInfo);
+    @Insert("insert into apiinfo (id,clickNum,collectionNum) values(#{id},0,0)")
+    boolean addAPIInfo(int id);
+
     //    更新指定apiId的APIInfo clickNum
     @Update("update apiinfo set clickNum=#{clickNum} where id=#{id}")
-    boolean updateAPIInfoClickNum(int clickNum,int id);
+    boolean updateAPIInfoClickNum(int clickNum, int id);
 
     //    更新指定apiId的APIInfo collectionNum
     @Update("update apiinfo set collectionNum=#{collectionNum} where id=#{id}")
-    boolean updateAPIInfoCollectionNum(int collectionNum,int id);
+    boolean updateAPIInfoCollectionNum(int collectionNum, int id);
+
     //    删除指定apiId的APIInfo
     @Delete("delete from apiinfo where id=#{id}")
     boolean deleteAPIInfoById(int id);

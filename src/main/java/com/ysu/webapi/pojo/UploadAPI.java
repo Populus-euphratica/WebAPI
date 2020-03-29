@@ -2,7 +2,7 @@ package com.ysu.webapi.pojo;
 
 import java.sql.Date;
 
-public class UserUpload {
+public class UploadAPI {
     //    用户详情id
     private int id;
     // 对应的用户id
@@ -11,12 +11,8 @@ public class UserUpload {
     private String name;
     //    API的简略介绍
     private String descriptionBrief;
-    //    API的详细介绍
-    private String description;
     //    API的类别
     private String category;
-    //    API的版本
-    private String versions;
     //    API是否被审查
     private boolean istrue;
     //    API审查是否通过
@@ -58,28 +54,12 @@ public class UserUpload {
         this.descriptionBrief = descriptionBrief;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getVersions() {
-        return versions;
-    }
-
-    public void setVersions(String versions) {
-        this.versions = versions;
     }
 
     public boolean isIstrue() {

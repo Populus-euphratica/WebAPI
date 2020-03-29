@@ -2,9 +2,9 @@ package com.ysu.webapi.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ysu.webapi.dao.UploadAPIDao;
 import com.ysu.webapi.dao.UserConcernDao;
 import com.ysu.webapi.dao.UserDao;
-import com.ysu.webapi.dao.UserUploadDao;
 import com.ysu.webapi.pojo.User;
 import com.ysu.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserConcernDao userConcernDao;
     @Autowired
-    private UserUploadDao userUploadDao;
+    private UploadAPIDao uploadAPIDao;
 
 
     //    根据指定的user id查找对应的user
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
         boolean flag=false;
         try {
             userDao.deleteUserById(id);
-            userUploadDao.deleteUserUploadByUserId(id);
+            uploadAPIDao.deleteUploadAPIByUserId(id);
             flag=userConcernDao.deleteUserConcernByUserId(id);
         }catch (Exception e){
             System.out.println("删除user信息失败");

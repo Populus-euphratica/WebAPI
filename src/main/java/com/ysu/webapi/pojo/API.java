@@ -7,12 +7,9 @@ public class API {
     private String name;
 //    API的简略介绍
     private String descriptionBrief;
-//    API的详细介绍
-    private String description;
 //    API的类别
     private String category;
-//    API的版本
-    private String versions;
+
 
     public int getId() {
         return id;
@@ -28,15 +25,6 @@ public class API {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getCategory() {
@@ -55,11 +43,4 @@ public class API {
         this.descriptionBrief = descriptionBrief;
     }
 
-    public String getVersions() {
-        return versions;
-    }
-
-    public void setVersions(String versions) {
-        this.versions = versions;
-    }
 }

@@ -2,6 +2,8 @@ package com.ysu.webapi.service;
 
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APISummary;
+import com.ysu.webapi.pojo.APIVersions;
 
 import java.util.List;
 
@@ -43,11 +45,11 @@ public interface APIService {
 
 
     //     添加API
-    public boolean addAPI(API api);
+    public int addAPI(API api);
 
 
     //更新上传API的审核状态并添加API
-    boolean addAPIAndUpdateUserUpload(int id);
+    boolean addAPIAndUpdateUploadAPI(int id);
 
 
     //    更新指定id的API

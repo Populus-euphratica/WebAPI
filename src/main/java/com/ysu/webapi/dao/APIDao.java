@@ -10,7 +10,6 @@ public interface APIDao {
     @Select("select * from api where id=#{id}")
     API selectAPIById(int id);
 
-
     //    根据指定的API name查找对应的API
     @Select("select * from api where name like CONCAT('%',#{name},'%')")
     List<API> selectAPIByName(String name);
@@ -43,14 +42,15 @@ public interface APIDao {
     List<API> selectAPIByAllAPIRecommend();
 
     //     添加api
-    @Insert("insert into api (name,descriptionBrief,description,category,versions) values(#{name},#{descriptionBrief},#{description},#{category},#{versions})")
+    @Insert("insert into api (name,descriptionBrief,category) values(#{name},#{descriptionBrief},#{category})")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     boolean addAPI(API api);
 
 
     //    更新指定id的API
-    @Update("update api set name=#{name},descriptionBrief=#{descriptionBrief},description=#{description},category=#{category},versions=#{versions} where id=#{id}")
+    @Update("update api set name=#{name},descriptionBrief=#{descriptionBrief},category=#{category} where id=#{id}")
     boolean updateAPI(API api);
+
     //    删除指定id的API
     @Delete("delete from api where id=#{id}")
     boolean deleteAPIById(int id);
