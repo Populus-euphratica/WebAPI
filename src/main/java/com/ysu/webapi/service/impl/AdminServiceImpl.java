@@ -1,9 +1,6 @@
 package com.ysu.webapi.service.impl;
 
-import com.ysu.webapi.dao.AdminDao;
-import com.ysu.webapi.dao.ApplyForAdminDao;
-import com.ysu.webapi.dao.FeedBackDao;
-import com.ysu.webapi.dao.UploadAPIDao;
+import com.ysu.webapi.dao.*;
 import com.ysu.webapi.pojo.Admin;
 import com.ysu.webapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +20,8 @@ public class AdminServiceImpl implements AdminService {
     private FeedBackDao feedBackDao;
     @Autowired
     private UploadAPIDao uploadAPIDao;
+    @Autowired
+    private UploadAPIVersionsDao uploadAPIVersionsDao;
 
     // 添加管理员
     @Override
@@ -91,7 +90,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int selectMessageSum(){
         try {
-            return feedBackDao.selectFeedBackByIstrueToSum(false)+applyForAdminDao.selectApplyByIstrueToSum(false)+uploadAPIDao.selectUploadAPIByIstrueToSum(false);
+            return feedBackDao.selectFeedBackByIstrueToSum(false)+applyForAdminDao.selectApplyByIstrueToSum(false)+uploadAPIDao.selectUploadAPIByIstrueToSum(false)+uploadAPIVersionsDao.selectUploadAPIVersionsToSum();
         }catch (Exception e){
             System.out.println("获取未读消息总和失败！");
             e.printStackTrace();

@@ -5,6 +5,7 @@ import com.ysu.webapi.pojo.APIVS;
 import com.ysu.webapi.pojo.APIVersions;
 import com.ysu.webapi.service.APIVersionsService;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,19 @@ public class APIVersionsController {
         System.out.println("开始添加API版本！");
         return apiVersionsService.addAPIVersions(apivs.getApiVersions(),apivs.getApiSummary());
     }
+
+    //    添加用户上传的API版本
+    @ApiOperation(value = "添加API版本", notes = "输入API版本对象，创建APIVersions，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "uploadVersionsId", value = "上传的uploadVersionsId", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "APIId", value = "对应的APIId", required = true, dataType = "int")
+    })
+    @PostMapping("/upload")
+    public boolean addUploadAPIVersions(@RequestParam int uploadVersionsId){
+        System.out.println("添加用户上传的API版本！");
+        return apiVersionsService.addUploadAPIVersions(uploadVersionsId);
+    }
+
 
     //    更新指定id的API版本
     @ApiOperation(value = "更新指定id的APIVersions版本", notes = "输入APIVersions对象，更新APIVersions，返回true")

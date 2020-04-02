@@ -2,6 +2,7 @@ package com.ysu.webapi.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APIShow;
 import com.ysu.webapi.pojo.UserConcern;
 import com.ysu.webapi.service.UserConcernService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,7 +36,7 @@ public class UserConcernController {
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/userId")
-    public PageInfo<API> selectUserConcernByUserId(@RequestParam int userId, @RequestParam int pageNum) {
+    public PageInfo<APIShow> selectUserConcernByUserId(@RequestParam int userId, @RequestParam int pageNum) {
         System.out.println("开始根据指定的userConcern userId查找对应的userConcern！");
         return userConcernService.selectUserConcernByUserId(userId, pageNum, pageSize);
     }

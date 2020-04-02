@@ -9,37 +9,40 @@ import java.util.List;
 public interface UploadAPIDao {
 
     //    根据指定的UploadAPI id查找对应的UploadAPI
-    @Select("select * from userupload where id=#{id}")
+    @Select("select * from uploadapi where id=#{id}")
     UploadAPI selectUserConcernById(int id);
 
-    //    根据用户id查找该用户上传的所有的API
-    @Select("select userId,name,descriptionBrief,category,istrue,decide,date from userupload where userId=#{userId}")
-    List<UploadAPI> selectUploadAPIByUserId(int userId);
+    //    根据用户id及是否审核通过查找该用户上传的所有的API
+    @Select("select * from uploadapi where userId=#{userId} and istrue=true and decide=#{decide}")
+    List<UploadAPI> selectUploadAPIByUserIdAndDecide(int userId,boolean decide);
 
+    //    根据用户id及是否被审核查找该用户上传的所有的API
+    @Select("select * from uploadapi where userId=#{userId}")
+    List<UploadAPI> selectUploadAPIByUserIdAndIstrue(int userId);
 
     //    根据根据是否被审核查找所有符合的API
-    @Select("select id,userId,name,descriptionBrief,category,istrue,decide,date,email from userupload where istrue=#{istrue}")
+    @Select("select * from uploadapi where istrue=#{istrue}")
     List<UploadAPI> selectUploadAPIByIstrue(boolean istrue);
 
     //    根据根据是否被审核查找所有符合的API数目
-    @Select("select count(id) from userupload where istrue=#{istrue}")
+    @Select("select count(id) from uploadapi where istrue=#{istrue}")
     int selectUploadAPIByIstrueToSum(boolean istrue);
 
 
     //上传API
-    @Insert("insert into userupload (userId,name,descriptionBrief,category,istrue,decide,date,email) values(#{userId},#{name},#{descriptionBrief},#{category},false,false,#{date},#{email})")
+    @Insert("insert into uploadapi (userId,name,descriptionBrief,category,istrue,decide,date,email) values(#{userId},#{name},#{descriptionBrief},#{category},false,false,#{date},#{email})")
     boolean addUploadAPI(UploadAPI uploadAPI);
 
 
     //更新上传API的审核状态
-    @Update("update userupload set istrue=true,decide=#{decide} where id=#{id}")
+    @Update("update uploadapi set istrue=true,decide=#{decide} where id=#{id}")
     boolean updateUploadAPI(boolean decide, int id);
 
     //    删除指定id的上传API
-    @Delete("delete from userupload where id=#{id}")
+    @Delete("delete from uploadapi where id=#{id}")
     boolean deleteUploadAPIById(int id);
 
     //删除该用户所有上传的API
-    @Delete("delete from userupload where UserId=#{UserId}")
+    @Delete("delete from uploadapi where UserId=#{UserId}")
     boolean deleteUploadAPIByUserId(int UserId);
 }

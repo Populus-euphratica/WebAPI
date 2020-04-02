@@ -1,5 +1,7 @@
 package com.ysu.webapi.pojo;
 
+import java.sql.Date;
+
 public class APIShow {
 
     //    API的id
@@ -10,10 +12,9 @@ public class APIShow {
     private String descriptionBrief;
     //    API的类别
     private String category;
-    //    API版本id号
-    private int APIVersionId;
-    //    该版本版本号
-    private String versions;
+    //    收藏日期
+    private Date date;
+
 
     public int getId() {
         return id;
@@ -47,19 +48,11 @@ public class APIShow {
         this.category = category;
     }
 
-    public int getAPIVersionId() {
-        return APIVersionId;
+    public Date getDate() {
+        return date;
     }
 
-    public void setAPIVersionId(int APIVersionId) {
-        this.APIVersionId = APIVersionId;
-    }
-
-    public String getVersions() {
-        return versions;
-    }
-
-    public void setVersions(String versions) {
-        this.versions = versions;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

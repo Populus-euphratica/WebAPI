@@ -16,6 +16,9 @@ public interface APIVersionsService {
     //    添加API版本
     public boolean addAPIVersions(APIVersions apiVersions, APISummary apiSummary);
 
+    //    添加用户上传的API版本
+    public boolean addUploadAPIVersions(int uploadVersionsId);
+
     //    更新指定id的API版本
     public boolean updateAPIVersions(APIVersions apiVersions,APISummary apiSummary);
 

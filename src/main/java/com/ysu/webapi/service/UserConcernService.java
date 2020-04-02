@@ -2,6 +2,7 @@ package com.ysu.webapi.service;
 
 import com.github.pagehelper.PageInfo;
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APIShow;
 import com.ysu.webapi.pojo.UserConcern;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UserConcernService {
 //    UserConcern selectUserConcernById(int userId);
 
     //    根据指定的userConcern userId查找对应的userConcern
-    PageInfo<API> selectUserConcernByUserId(int userId, int pageNum, int pageSize);
+    PageInfo<APIShow> selectUserConcernByUserId(int userId, int pageNum, int pageSize);
     //    根据指定的userConcern userId查找对应的userConcern不分页
     List<UserConcern> selectUserConcernByUserIdALL(int userId);
     //    查找所有userConcern

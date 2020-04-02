@@ -2,7 +2,8 @@ package com.ysu.webapi.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-public class APISummary {
+
+public class UploadAPISummary {
     //    API详细内容的id
     private int id;
     //    对应的APIId
@@ -77,81 +78,6 @@ public class APISummary {
 
     private String RestrictedAccess;
 
-    public APISummary(){
-
-    }
-    public APISummary(UploadAPISummary uploadAPISummary){
-        this.APIId=uploadAPISummary.getAPIId();
-        //    API端点 API Endpoint
-
-        this.Endpoint=uploadAPISummary.getEndpoint();
-        //    API门户/主页 API Portal / Home Page
-
-        this.Portal=uploadAPISummary.getPortal();
-        //    主要类别 Primary Category
-
-        this.PrimaryCategory=uploadAPISummary.getPrimaryCategory();
-        //    次要类别 Secondary Categories
-
-        this.SecondaryCategories=uploadAPISummary.getSecondaryCategories();
-        //    API提供商 API Provider
-
-        this.APIProvider=uploadAPISummary.getAPIProvider();
-        //    SSL支持 SSL Support
-
-        this.SSLSupport=uploadAPISummary.getSSLSupport();
-        //    API论坛/留言板 API Forum / Message Boards
-
-        this.APIForum=uploadAPISummary.getAPIForum();
-        //    Twitter URL Twitter URL
-
-        this.TwitterURL=uploadAPISummary.getTwitterURL();
-        //    支持电子邮件地址 Support Email Address
-
-        this.SupportEmailAddress=uploadAPISummary.getSupportEmailAddress();
-        //    交互式控制台URL Interactive Console URL
-
-        this.InteractiveConsoleURL=uploadAPISummary.getInteractiveConsoleURL();
-        //    身份验证模型 Authentication Model
-
-        this.AuthenticationModel=uploadAPISummary.getAuthenticationModel();
-        //    版本状态 Version status
-
-        this.VersionStatus=uploadAPISummary.getVersionStatus();
-        //    API设计/说明是否专有？ Is the API Design/Description Non-Proprietary ?
-
-        this.APIDesign=uploadAPISummary.getAPIDesign();
-        //    范围 Scope
-
-        this.Scope=uploadAPISummary.getScope();
-        //    设备特定 Device Specific
-
-        this.DeviceSpecific=uploadAPISummary.getDeviceSpecific();
-        //    文件首页网址 Docs Home Page URL
-
-        this.DocsHomePageURL=uploadAPISummary.getDocsHomePageURL();
-        //    建筑风格 Architectural Style
-
-        this.ArchitecturalStyle=uploadAPISummary.getArchitecturalStyle();
-        //    支持的请求格式 Supported Request Formats
-
-        this.SupportedRequestFormats=uploadAPISummary.getSupportedRequestFormats();
-        //    支持的响应格式 Supported Response Formats
-
-        this.SupportedResponseFormats=uploadAPISummary.getSupportedResponseFormats();
-        //    这是非官方的API吗？Is This an Unofficial API?
-
-        this.UnofficialAPI=uploadAPISummary.getUnofficialAPI();
-        //    这是Hypermedia API吗？Is This a Hypermedia API?
-
-        this.HypermediaAPI=uploadAPISummary.getHypermediaAPI();
-        //    限制访问（需要供应商认证）Restricted Access ( Requires Provider Approval )
-
-        this.RestrictedAccess=uploadAPISummary.getRestrictedAccess();
-    }
-    
-    
-    
     public int getId() {
         return id;
     }

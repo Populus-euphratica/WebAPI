@@ -15,11 +15,19 @@ public class UploadAPIServiceImpl implements UploadAPIService {
     @Autowired
     private UploadAPIDao userUploadDao;
 
-    //    根据用户id查找该用户上传的所有的API
+    //    根据用户id及是否审核通过查找该用户上传的所有的API
     @Override
-    public PageInfo<UploadAPI> selectUploadAPIByUserId(int userId,int pageNum, int pageSize){
+    public PageInfo<UploadAPI> selectUploadAPIByUserIdAndDecide(int userId,boolean decide,int pageNum, int pageSize){
         PageHelper.startPage(pageNum,pageSize);
-        List<UploadAPI> list=userUploadDao.selectUploadAPIByUserId(userId);
+        List<UploadAPI> list=userUploadDao.selectUploadAPIByUserIdAndDecide(userId, decide);
+        return new PageInfo(list,5);
+    }
+
+    //    根据用户id及是否被审核查找该用户上传的所有的API
+    @Override
+    public PageInfo<UploadAPI> selectUploadAPIByUserIdAndIstrue(int userId,int pageNum, int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<UploadAPI> list=userUploadDao.selectUploadAPIByUserIdAndIstrue(userId);
         return new PageInfo(list,5);
     }
 

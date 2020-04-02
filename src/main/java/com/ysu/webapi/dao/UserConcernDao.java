@@ -2,6 +2,7 @@ package com.ysu.webapi.dao;
 
 
 import com.ysu.webapi.pojo.API;
+import com.ysu.webapi.pojo.APIShow;
 import com.ysu.webapi.pojo.UserConcern;
 import org.apache.ibatis.annotations.*;
 
@@ -14,8 +15,8 @@ public interface UserConcernDao {
 //    UserConcern selectUserConcernById(int userId);
 
     //    根据指定的userConcern userId查找对应的userConcern
-    @Select("SELECT b.id,userconcern,date,name,descriptionBrief,category,versions FROM api as a inner join(SELECT userconcern,id FROM userconcern where userId=#{userId}) as b where a.id=b.userconcern")
-    List<API> selectUserConcernByUserId(int userId);
+    @Select("SELECT b.id,userconcern,date,name,descriptionBrief,category FROM api as a inner join(SELECT userconcern,id,date FROM userconcern where userId=#{userId}) as b where a.id=b.userconcern")
+    List<APIShow> selectUserConcernByUserId(int userId);
 
     //    根据指定的userConcern userId查找对应的userConcern ID 并且不分页
     @Select("SELECT id,userConcern from userconcern where userId=#{userId}")

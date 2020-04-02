@@ -17,17 +17,28 @@ public class UploadAPIController {
     private UploadAPIService uploadAPIService;
     private int pageSize = 5;
 
-    //    根据用户id查找该用户上传的所有的API
+    //    根据用户id及是否审核通过查找该用户上传的所有的API
+    @ApiOperation(value = "通过id查找UploadAPI对应的uploadAPI", notes = "输入UploadAPI userId，查询User，返回对应的uploadAPI")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "UploadAPI类userId", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "decide", value = "管理员审核是否通过", required = true, dataType = "boolean"),
+            @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
+    })
+    @GetMapping("/userId/decide")
+    public PageInfo<UploadAPI> selectUploadAPIByUserIdAndDecide(@RequestParam int userId,@RequestParam boolean decide,@RequestParam int pageNum){
+        return uploadAPIService.selectUploadAPIByUserIdAndDecide(userId, decide, pageNum, pageSize);
+    }
+
+    //    根据用户id及是否被审核查找该用户上传的所有的API
     @ApiOperation(value = "通过id查找UploadAPI对应的uploadAPI", notes = "输入UploadAPI userId，查询User，返回对应的uploadAPI")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userId", value = "UploadAPI类userId", required = true, dataType = "int"),
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/userId")
-    public PageInfo<UploadAPI> selectUploadAPIByUserId(@RequestParam int userId,@RequestParam int pageNum) {
-        return uploadAPIService.selectUploadAPIByUserId(userId, pageNum, pageSize);
+    public PageInfo<UploadAPI> selectUploadAPIByUserIdAndIstrue(@RequestParam int userId,@RequestParam int pageNum){
+        return uploadAPIService.selectUploadAPIByUserIdAndIstrue(userId,pageNum, pageSize);
     }
-
 
     //    根据根据是否被审核查找所有符合的API
     @ApiOperation(value = "通过istrue查找UploadAPI对应的uploadAPI", notes = "输入UploadAPI userId，查询User，返回对应的uploadAPI")
@@ -42,7 +53,7 @@ public class UploadAPIController {
 
     //    根据根据是否被审核查找所有符合的API数目
     @ApiOperation(value="查找UploadAPI是否被审核的数目", notes="输入UploadAPI istrue，根据是否被审核从UploadAPI中查找符合的UploadAPI，返回是否被审核的数目")
-    @ApiImplicitParam(name = "istrue", value = "UploadAPI类属性istrue", required = true, dataType = "boolen")
+    @ApiImplicitParam(name = "istrue", value = "UploadAPI类属性istrue", required = true, dataType = "boolean")
     @GetMapping("/istrue/sum")
     public int selectUploadAPIByIstrueToSum(@RequestParam boolean istrue){
         return uploadAPIService.selectUploadAPIByIstrueToSum(istrue);

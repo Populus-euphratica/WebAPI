@@ -146,7 +146,7 @@ public class APIController {
             @ApiImplicitParam(name = "api", value = "API类详细实体api", required = true, dataType = "API"),
             @ApiImplicitParam(name = "id", value = "UserUpload类id", required = true, dataType = "int")
     })
-    @PostMapping("/userUpload")
+    @PostMapping("/uploadAPI")
     public boolean addAPIAndUpdateUserUpload(@RequestParam int id) {
         System.out.println("开始更新上传API的审核状态并添加API！");
         return apiService.addAPIAndUpdateUploadAPI(id);

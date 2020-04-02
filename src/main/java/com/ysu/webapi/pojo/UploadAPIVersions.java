@@ -2,33 +2,33 @@ package com.ysu.webapi.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class APIVersions {
-//    API版本id号
+import java.sql.Date;
+
+public class UploadAPIVersions {
+    //    API版本id号
     private int id;
-//    对应的APIid
+    //    对应的APIid
     private int APIId;
-//    该版本API的名称
+    // 对应的用户id
+    private int userId;
+    //    该版本API的名称
     private String name;
-//    该版本API的详细描述
+    //    该版本API的详细描述
     private String description;
-//    该版本API的类别
+    //    该版本API的类别
     private String category;
-//    该版本API的logo
+    //    该版本API的logo
     private String logo;
-//    该版本版本号
+    //    该版本版本号
     private String versions;
-
-    public APIVersions(UploadAPIVersions uploadAPIVersions){
-        this.APIId=uploadAPIVersions.getAPIId();
-        this.name=uploadAPIVersions.getName();
-        this.description=uploadAPIVersions.getDescription();
-        this.category=uploadAPIVersions.getCategory();
-        this.logo=uploadAPIVersions.getLogo();
-        this.versions=uploadAPIVersions.getVersions();
-    }
-    public APIVersions(){
-
-    }
+    //    申请时间
+    private Date date;
+    //    API是否被审查
+    private boolean istrue;
+    //    API审查是否通过
+    private boolean decide;
+    //    上传者的邮箱
+    private String email;
 
     public int getId() {
         return id;
@@ -37,6 +37,7 @@ public class APIVersions {
     public void setId(int id) {
         this.id = id;
     }
+
     @JsonProperty(value = "APIId")
     public int getAPIId() {
         return APIId;
@@ -84,5 +85,45 @@ public class APIVersions {
 
     public void setVersions(String versions) {
         this.versions = versions;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isIstrue() {
+        return istrue;
+    }
+
+    public void setIstrue(boolean istrue) {
+        this.istrue = istrue;
+    }
+
+    public boolean isDecide() {
+        return decide;
+    }
+
+    public void setDecide(boolean decide) {
+        this.decide = decide;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

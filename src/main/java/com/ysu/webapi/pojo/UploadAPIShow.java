@@ -2,7 +2,7 @@ package com.ysu.webapi.pojo;
 
 import java.sql.Date;
 
-public class UploadAPI {
+public class UploadAPIShow {
     //    用户详情id
     private int id;
     // 对应的用户id
@@ -17,11 +17,14 @@ public class UploadAPI {
     private boolean istrue;
     //    API审查是否通过
     private boolean decide;
-    //    申请时间
-    private Date date;
     //    上传者的邮箱
     private String email;
-
+    //    API版本id号
+    private int versionsId;
+    //    该版本版本号
+    private String versions;
+    //    该版本API的logo
+    private String logo;
 
     public int getId() {
         return id;
@@ -79,13 +82,6 @@ public class UploadAPI {
         this.decide = decide;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public String getEmail() {
         return email;
@@ -95,4 +91,27 @@ public class UploadAPI {
         this.email = email;
     }
 
+    public int getVersionsId() {
+        return versionsId;
+    }
+
+    public void setVersionsId(int versionsId) {
+        this.versionsId = versionsId;
+    }
+
+    public String getVersions() {
+        return versions;
+    }
+
+    public void setVersions(String versions) {
+        this.versions = versions;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 }

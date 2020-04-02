@@ -62,9 +62,9 @@ public class APINewsController  {
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/dateSection")
-    public PageInfo<APINews> selectAPINewsByDateSection(@RequestParam Date data1, @RequestParam Date data2,@RequestParam int pageNum){
+    public PageInfo<APINews> selectAPINewsByDateSection(@RequestParam Date date1, @RequestParam Date date2,@RequestParam int pageNum){
         System.out.println("开始根据指定的APINews date区间查找对应的APINews!");
-        return apiNewsService.selectAPINewsByDateSection(data1,data2,pageNum,pageSize);
+        return apiNewsService.selectAPINewsByDateSection(date1,date2,pageNum,pageSize);
     }
 
     //    根据指定的APINews date查找对应的APINews
@@ -74,9 +74,9 @@ public class APINewsController  {
             @ApiImplicitParam(name = "pageNum", value = "显示页数", required = true, dataType = "int")
     })
     @GetMapping("/data")
-    public PageInfo<APINews> selectAPINewsByDate(@RequestParam Date data,  @RequestParam int pageNum){
+    public PageInfo<APINews> selectAPINewsByDate(@RequestParam Date date,  @RequestParam int pageNum){
         System.out.println("开始根据指定的APINews date查找对应的APINews!");
-        return apiNewsService.selectAPINewsByDate(data,pageNum,pageSize);
+        return apiNewsService.selectAPINewsByDate(date,pageNum,pageSize);
     }
 
 

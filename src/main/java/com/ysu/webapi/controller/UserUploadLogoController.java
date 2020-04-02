@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import static com.ysu.webapi.WebapiApplication.path;
-import static com.ysu.webapi.WebapiApplication.logoPath;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import static com.ysu.webapi.WebapiApplication.*;
+
 @RestController
-@RequestMapping(value = "/api/uploadLogo")
-public class UploadLogoController {
+@RequestMapping(value = "/api/userUploadLogo")
+public class UserUploadLogoController {
 
 
 
@@ -29,7 +30,7 @@ public class UploadLogoController {
         if(fileName.indexOf("\\") != -1){
             fileName = fileName.substring(fileName.lastIndexOf("\\"));
         }
-        String filePath = path;
+        String filePath = userPath;
         File targetFile = new File(filePath);
         if(!targetFile.exists()){
             targetFile.mkdirs();
@@ -53,6 +54,28 @@ public class UploadLogoController {
     @PostMapping("/no")
     public void noUpload(@RequestParam String logo)throws Exception {
         String url1 = logoPath+"logo.png";// 源文件路径
+        String url2 = userPath+logo;// 目标路径
+
+        FileInputStream in = new FileInputStream(new File(url1));
+        FileOutputStream out = new FileOutputStream(new File(url2));
+        byte[] buff = new byte[512];
+        int n = 0;
+        System.out.println("复制文件：" + "\n" + "源路径：" + url1 + "\n" + "目标路径："
+                + url2);
+        while ((n = in.read(buff)) != -1) {
+            out.write(buff, 0, n);
+        }
+        out.flush();
+        in.close();
+        out.close();
+        System.out.println("复制完成");
+    }
+
+    @ApiOperation(value = "接受上传图片", notes = "接受上传图片，保存到本地，并返回上传结果")
+    @ApiImplicitParam(name = "logo", value = "logo", required = true, dataType = "String")
+    @PostMapping("/upload")
+    public void Upload(@RequestParam String logo)throws Exception {
+        String url1 = userPath+logo;// 源文件路径
         String url2 = path+logo;// 目标路径
 
         FileInputStream in = new FileInputStream(new File(url1));

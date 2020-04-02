@@ -25,6 +25,8 @@ public class APIServiceImpl implements APIService {
     private APIVersionsDao apiVersionsDao;
     @Autowired
     private APISummaryDao apiSummaryDao;
+    @Autowired
+    private UserAPIDao userAPIDao;
 
     //    根据指定的API id查找对应的API
     @Override
@@ -138,9 +140,14 @@ public class APIServiceImpl implements APIService {
             api.setDescriptionBrief(uploadAPI.getDescriptionBrief());
             api.setName(uploadAPI.getName());
             apiDao.addAPI(api);
+            UserAPI userAPI=new UserAPI();
+            userAPI.setAPIId(api.getId());
+            userAPI.setUserId(uploadAPI.getUserId());
+            userAPIDao.addUserAPI(userAPI);
             flag=apiInfoDao.addAPIInfo(api.getId());
         }catch (Exception e){
             System.out.println("添加api失败");
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             e.printStackTrace();
         }
         if (!flag){
@@ -173,13 +180,8 @@ public class APIServiceImpl implements APIService {
         try {
             apiDao.deleteAPIById(id);
             apiSummaryDao.deleteAPISummaryByAPIId(id);
-            List<APIVersions> apiVersionsList=apiVersionsDao.selectAPIVersionsByAPIId(id);
-            Iterator<APIVersions> it = apiVersionsList.iterator();
-            while (it.hasNext()){
-                File cashfile =new File("C:\\Users\\贾廷刚\\Desktop\\Pingendo\\Web\\default\\APILogo\\"+it.next().getLogo());
-                cashfile.delete();
-            }
             apiVersionsDao.deleteAPIVersionsByAPIId(id);
+            userAPIDao.delectUserAPIByAPIId(id);
             flag=apiInfoDao.deleteAPIInfoById(id);
         }catch (Exception e){
             System.out.println("删除API失败");
