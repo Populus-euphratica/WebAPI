@@ -37,6 +37,7 @@ public class APIInfoController {
     @ApiImplicitParam(name = "id", value = "APIInfo类属性id", required = true, dataType = "int")
     @PutMapping("/id/clickNum")
     public boolean updateAPIInfoClickNum(@RequestParam int id){
+        System.out.println("开始更新指定apiId的APIInfo clickNum!");
         return apiInfoService.updateAPIInfoClickNum(id);
     }
 
@@ -45,6 +46,7 @@ public class APIInfoController {
     @ApiImplicitParam(name = "id", value = "APIInfo类属性id", required = true, dataType = "int")
     @PutMapping("/id/collectionNum")
     public boolean updateAPIInfoCollectionNum(@RequestParam int id){
+        System.out.println("开始更新指定apiId的APIInfo collectionNum!");
         return apiInfoService.updateAPIInfoCollectionNum(id);
     }
 

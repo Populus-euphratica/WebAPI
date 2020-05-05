@@ -10,8 +10,11 @@ public interface AdminService {
     public boolean addAdmin(Admin admin);
 
 
-    //    更改管理员信息
-    public boolean updateAdmin(Admin admin);
+    //    更新管理员用户名
+    boolean updateAdminName(String name,int id);
+
+    //    更新管理员密码
+    boolean updateAdminPassword(String password,int id);
 
     //更新申请状态并添加管理员
     public boolean updateApplyAndAddAdmin(int id, Admin admin);

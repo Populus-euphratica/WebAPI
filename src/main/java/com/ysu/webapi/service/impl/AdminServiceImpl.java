@@ -53,13 +53,12 @@ public class AdminServiceImpl implements AdminService {
         }
         return flag;
     }
-
-    // 更新管理员信息
+    //    更新管理员用户名
     @Override
-    public boolean updateAdmin(Admin admin) {
+    public boolean updateAdminName(String name,int id){
         boolean flag = false;
         try {
-            flag = adminDao.updateAdmin(admin);
+            flag = adminDao.updateAdminName(name, id);
             System.out.println("更新管理员成功！");
         } catch (Exception e) {
             System.out.println("更新失败！");
@@ -67,6 +66,21 @@ public class AdminServiceImpl implements AdminService {
         }
         return flag;
     }
+
+    //    更新管理员密码
+    @Override
+    public boolean updateAdminPassword(String password,int id){
+        boolean flag = false;
+        try {
+            flag = adminDao.updateAdminPassword(password, id);
+            System.out.println("更新管理员成功！");
+        } catch (Exception e) {
+            System.out.println("更新失败！");
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
 
     // 查找全部管理员
     @Override

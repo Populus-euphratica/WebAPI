@@ -40,14 +40,29 @@ public class AdminController {
     }
 
 
-    @ApiOperation(value = "更新管理员", notes = "输入Admin对象，更新管理员，返回true")
-    @ApiImplicitParam(name = "admin", value = "管理员类详细实体admin", required = true, dataType = "Admin")
-    @PutMapping("/")
-    public boolean updateAdmin(@RequestBody Admin admin) {
-        System.out.println("开始更新指定管理员信息！");
-        return adminService.updateAdmin(admin);
+    //    更新管理员用户名
+    @ApiOperation(value = "更新管理员用户名", notes = "输入Admin对象 name,id，更新管理员用户名，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "管理员Id", required = true, paramType = "query", dataType = "int"),
+            @ApiImplicitParam(name = "name", value = "管理员name", required = true, paramType = "query", dataType = "String")
+    })
+    @PutMapping("/name/id")
+    boolean updateAdminName(@RequestParam String name,@RequestParam int id){
+        System.out.println("开始更新管理员名!");
+        return adminService.updateAdminName(name, id);
     }
 
+    //    更新管理员密码
+    @ApiOperation(value = "更新管理员密码", notes = "输入Admin对象 password id，更新管理员密码，返回true")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "管理员Id", required = true, paramType = "query", dataType = "int"),
+            @ApiImplicitParam(name = "password", value = "管理员password", required = true, paramType = "query", dataType = "String")
+    })
+    @PutMapping("/password/id")
+    boolean updateAdminPassword(@RequestParam String password,@RequestParam int id){
+        System.out.println("开始更新管理员密码!");
+        return adminService.updateAdminPassword(password, id);
+    }
     @ApiOperation(value = "查找全部管理员", notes = "返回所有Admin对象")
     @GetMapping("/all")
     public List<Admin> selectAllAdmin() {
