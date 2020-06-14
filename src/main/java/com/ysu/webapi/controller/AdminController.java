@@ -124,7 +124,7 @@ public class AdminController {
     @PostMapping("/loginVerify")
     public void loginVAdmin(@RequestParam String ticket, @RequestParam String randstr, @RequestParam String userIp) {
         try {
-            Credential cred = new Credential("AKID35u74I52Wo33TdtCb8QTHq9C3efdxr89", "xpRRBgwxlKly2rQlqjOxHQKyNWQ4f2FC");
+            Credential cred = new Credential("xxxx", "xxxx");
 
             HttpProfile httpProfile = new HttpProfile();
             httpProfile.setEndpoint("captcha.tencentcloudapi.com");
@@ -134,7 +134,7 @@ public class AdminController {
 
             CaptchaClient client = new CaptchaClient(cred, "", clientProfile);
 
-            String params = "{\"CaptchaType\":9,\"Ticket\":" + ticket + ",\"UserIp\":" + userIp + ",\"Randstr\":" + randstr + ",\"CaptchaAppId\":2029808606,\"AppSecretKey\":\"0p6q41uiVBWdE9dQhvuvTZw**\"}";
+            String params = "{\"CaptchaType\":9,\"Ticket\":" + ticket + ",\"UserIp\":" + userIp + ",\"Randstr\":" + randstr + ",\"CaptchaAppId\":xxxxxx,\"AppSecretKey\":\"xxxxx**\"}";
             DescribeCaptchaResultRequest req = DescribeCaptchaResultRequest.fromJsonString(params, DescribeCaptchaResultRequest.class);
 
             DescribeCaptchaResultResponse resp = client.DescribeCaptchaResult(req);
