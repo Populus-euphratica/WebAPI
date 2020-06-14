@@ -37,7 +37,7 @@ public class Swagger2 {
         return new ApiInfoBuilder()
                 .title("Bootstrap WebAPI网站 API接口")
                 .description("描述：用于Bootstrap WebAPI网站API接口文档，访问地址：http://localhost:8080/swagger-ui.html")
-                .contact("贾廷刚")
+                .contact("xxx")
                 .version("版本号:v1.0")
                 .build();
     }

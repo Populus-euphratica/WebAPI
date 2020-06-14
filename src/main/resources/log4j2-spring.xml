@@ -3,7 +3,7 @@
 
     <properties>
         <!-- log打印到本地的路径 -->
-        <property name="LOG_HOME">C:\Users\贾廷刚\Desktop\log\</property>
+        <property name="LOG_HOME">C:\Users\xxx\Desktop\log\</property>
         <property name="ERROR_LOG_FILE_NAME">error</property>
     </properties>
     <Appenders>
